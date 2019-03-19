@@ -150,7 +150,7 @@
         
             
             
-              <a href="https://github.com/runawayhorse001/statspy/blob/master/doc/evaluationAPI.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/runawayhorse001/PySparkAPI/blob/master/doc/evaluationAPI.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -168,14 +168,14 @@
 <span id="evaluation-api"></span><span id="evaluationapi"></span><h1>9. Evaluation API<a class="headerlink" href="#module-pyspark.ml.evaluation" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pyspark.ml.evaluation.Evaluator">
-<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">Evaluator</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L34-L82"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.Evaluator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">Evaluator</code><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L34-L82"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.Evaluator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base class for evaluators that compute metrics from predictions.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
 </div>
 <dl class="method">
 <dt id="pyspark.ml.evaluation.Evaluator.evaluate">
-<code class="descname">evaluate</code><span class="sig-paren">(</span><em>dataset</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L54-L73"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.Evaluator.evaluate" title="Permalink to this definition">¶</a></dt>
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>dataset</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L54-L73"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.Evaluator.evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluates the output with optional parameters.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -201,7 +201,7 @@ params</li>
 
 <dl class="method">
 <dt id="pyspark.ml.evaluation.Evaluator.isLargerBetter">
-<code class="descname">isLargerBetter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L75-L82"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.Evaluator.isLargerBetter" title="Permalink to this definition">¶</a></dt>
+<code class="descname">isLargerBetter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L75-L82"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.Evaluator.isLargerBetter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates whether the metric returned by <a class="reference internal" href="#pyspark.ml.evaluation.Evaluator.evaluate" title="pyspark.ml.evaluation.Evaluator.evaluate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code></a> should be maximized
 (True, default) or minimized (False).
 A given evaluator may support multiple metrics which may be maximized or minimized.</p>
@@ -214,7 +214,7 @@ A given evaluator may support multiple metrics which may be maximized or minimiz
 
 <dl class="class">
 <dt id="pyspark.ml.evaluation.BinaryClassificationEvaluator">
-<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">BinaryClassificationEvaluator</code><span class="sig-paren">(</span><em>rawPredictionCol='rawPrediction'</em>, <em>labelCol='label'</em>, <em>metricName='areaUnderROC'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L109-L179"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.BinaryClassificationEvaluator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">BinaryClassificationEvaluator</code><span class="sig-paren">(</span><em>rawPredictionCol='rawPrediction'</em>, <em>labelCol='label'</em>, <em>metricName='areaUnderROC'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L109-L179"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.BinaryClassificationEvaluator" title="Permalink to this definition">¶</a></dt>
 <dd><div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Experimental</p>
@@ -244,7 +244,7 @@ The rawPrediction column can be of type double (binary 0/1 prediction, or probab
 </div>
 <dl class="method">
 <dt id="pyspark.ml.evaluation.BinaryClassificationEvaluator.getMetricName">
-<code class="descname">getMetricName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L162-L167"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.BinaryClassificationEvaluator.getMetricName" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getMetricName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L162-L167"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.BinaryClassificationEvaluator.getMetricName" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of metricName or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -253,7 +253,7 @@ The rawPrediction column can be of type double (binary 0/1 prediction, or probab
 
 <dl class="method">
 <dt id="pyspark.ml.evaluation.BinaryClassificationEvaluator.setMetricName">
-<code class="descname">setMetricName</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L155-L160"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.BinaryClassificationEvaluator.setMetricName" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setMetricName</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L155-L160"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.BinaryClassificationEvaluator.setMetricName" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">metricName</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -262,7 +262,7 @@ The rawPrediction column can be of type double (binary 0/1 prediction, or probab
 
 <dl class="method">
 <dt id="pyspark.ml.evaluation.BinaryClassificationEvaluator.setParams">
-<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>rawPredictionCol=&quot;rawPrediction&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>metricName=&quot;areaUnderROC&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L169-L179"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.BinaryClassificationEvaluator.setParams" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>rawPredictionCol=&quot;rawPrediction&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>metricName=&quot;areaUnderROC&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/__init__.py#L169-L179"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.BinaryClassificationEvaluator.setParams" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets params for binary classification evaluator.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -273,7 +273,7 @@ The rawPrediction column can be of type double (binary 0/1 prediction, or probab
 
 <dl class="class">
 <dt id="pyspark.ml.evaluation.RegressionEvaluator">
-<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">RegressionEvaluator</code><span class="sig-paren">(</span><em>predictionCol='prediction'</em>, <em>labelCol='label'</em>, <em>metricName='rmse'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L183-L256"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.RegressionEvaluator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">RegressionEvaluator</code><span class="sig-paren">(</span><em>predictionCol='prediction'</em>, <em>labelCol='label'</em>, <em>metricName='rmse'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L183-L256"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.RegressionEvaluator" title="Permalink to this definition">¶</a></dt>
 <dd><div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Experimental</p>
@@ -303,7 +303,7 @@ columns: prediction and label.</p>
 </div>
 <dl class="method">
 <dt id="pyspark.ml.evaluation.RegressionEvaluator.getMetricName">
-<code class="descname">getMetricName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L239-L244"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.RegressionEvaluator.getMetricName" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getMetricName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L239-L244"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.RegressionEvaluator.getMetricName" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of metricName or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -312,7 +312,7 @@ columns: prediction and label.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.evaluation.RegressionEvaluator.setMetricName">
-<code class="descname">setMetricName</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L232-L237"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.RegressionEvaluator.setMetricName" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setMetricName</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L232-L237"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.RegressionEvaluator.setMetricName" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">metricName</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -321,7 +321,7 @@ columns: prediction and label.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.evaluation.RegressionEvaluator.setParams">
-<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>metricName=&quot;rmse&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L246-L256"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.RegressionEvaluator.setParams" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>metricName=&quot;rmse&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/__init__.py#L246-L256"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.RegressionEvaluator.setParams" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets params for regression evaluator.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -332,7 +332,7 @@ columns: prediction and label.</p>
 
 <dl class="class">
 <dt id="pyspark.ml.evaluation.MulticlassClassificationEvaluator">
-<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">MulticlassClassificationEvaluator</code><span class="sig-paren">(</span><em>predictionCol='prediction'</em>, <em>labelCol='label'</em>, <em>metricName='f1'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L260-L328"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.MulticlassClassificationEvaluator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">MulticlassClassificationEvaluator</code><span class="sig-paren">(</span><em>predictionCol='prediction'</em>, <em>labelCol='label'</em>, <em>metricName='f1'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L260-L328"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.MulticlassClassificationEvaluator" title="Permalink to this definition">¶</a></dt>
 <dd><div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Experimental</p>
@@ -360,7 +360,7 @@ columns: prediction and label.</p>
 </div>
 <dl class="method">
 <dt id="pyspark.ml.evaluation.MulticlassClassificationEvaluator.getMetricName">
-<code class="descname">getMetricName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L311-L316"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.MulticlassClassificationEvaluator.getMetricName" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getMetricName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L311-L316"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.MulticlassClassificationEvaluator.getMetricName" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of metricName or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.5.0.</span></p>
@@ -369,7 +369,7 @@ columns: prediction and label.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.evaluation.MulticlassClassificationEvaluator.setMetricName">
-<code class="descname">setMetricName</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L304-L309"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.MulticlassClassificationEvaluator.setMetricName" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setMetricName</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L304-L309"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.MulticlassClassificationEvaluator.setMetricName" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">metricName</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.5.0.</span></p>
@@ -378,7 +378,7 @@ columns: prediction and label.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.evaluation.MulticlassClassificationEvaluator.setParams">
-<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>metricName=&quot;f1&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L318-L328"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.MulticlassClassificationEvaluator.setParams" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>metricName=&quot;f1&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/__init__.py#L318-L328"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.MulticlassClassificationEvaluator.setParams" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets params for multiclass classification evaluator.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.5.0.</span></p>
@@ -389,7 +389,7 @@ columns: prediction and label.</p>
 
 <dl class="class">
 <dt id="pyspark.ml.evaluation.ClusteringEvaluator">
-<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">ClusteringEvaluator</code><span class="sig-paren">(</span><em>predictionCol='prediction'</em>, <em>featuresCol='features'</em>, <em>metricName='silhouette'</em>, <em>distanceMeasure='squaredEuclidean'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L332-L422"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">ClusteringEvaluator</code><span class="sig-paren">(</span><em>predictionCol='prediction'</em>, <em>featuresCol='features'</em>, <em>metricName='silhouette'</em>, <em>distanceMeasure='squaredEuclidean'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L332-L422"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator" title="Permalink to this definition">¶</a></dt>
 <dd><div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Experimental</p>
@@ -422,7 +422,7 @@ in the same cluster and far from the points of the other clusters.</p>
 </div>
 <dl class="method">
 <dt id="pyspark.ml.evaluation.ClusteringEvaluator.getDistanceMeasure">
-<code class="descname">getDistanceMeasure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L417-L422"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.getDistanceMeasure" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getDistanceMeasure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L417-L422"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.getDistanceMeasure" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of <img class="math" src="_images/math/91d1f653b78d632bad83db02752aaf9971f068e3.png" alt="distanceMeasure"/></p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 2.4.0.</span></p>
@@ -431,7 +431,7 @@ in the same cluster and far from the points of the other clusters.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.evaluation.ClusteringEvaluator.getMetricName">
-<code class="descname">getMetricName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L391-L396"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.getMetricName" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getMetricName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L391-L396"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.getMetricName" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of metricName or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 2.3.0.</span></p>
@@ -440,7 +440,7 @@ in the same cluster and far from the points of the other clusters.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.evaluation.ClusteringEvaluator.setDistanceMeasure">
-<code class="descname">setDistanceMeasure</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L410-L415"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.setDistanceMeasure" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setDistanceMeasure</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L410-L415"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.setDistanceMeasure" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">distanceMeasure</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 2.4.0.</span></p>
@@ -449,7 +449,7 @@ in the same cluster and far from the points of the other clusters.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.evaluation.ClusteringEvaluator.setMetricName">
-<code class="descname">setMetricName</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L384-L389"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.setMetricName" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setMetricName</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/evaluation.py#L384-L389"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.setMetricName" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">metricName</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 2.3.0.</span></p>
@@ -458,7 +458,7 @@ in the same cluster and far from the points of the other clusters.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.evaluation.ClusteringEvaluator.setParams">
-<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>featuresCol=&quot;features&quot;</em>, <em>metricName=&quot;silhouette&quot;</em>, <em>distanceMeasure=&quot;squaredEuclidean&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L398-L408"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.setParams" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>featuresCol=&quot;features&quot;</em>, <em>metricName=&quot;silhouette&quot;</em>, <em>distanceMeasure=&quot;squaredEuclidean&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/__init__.py#L398-L408"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.setParams" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets params for clustering evaluator.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 2.3.0.</span></p>

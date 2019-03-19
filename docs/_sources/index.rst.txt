@@ -5,7 +5,7 @@
   .. figure:: images/logo.png
     :align: center
 
-Welcome to my **Statistics Python Library API**! The PDF version can be downloaded from `HERE <statspy.pdf>`_.
+Welcome to my **PySpark API**! The PDF version can be downloaded from `HERE <PySparkAPI.pdf>`_.
 
 ========
 Contents

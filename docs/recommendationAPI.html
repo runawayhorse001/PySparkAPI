@@ -150,7 +150,7 @@
         
             
             
-              <a href="https://github.com/runawayhorse001/statspy/blob/master/doc/recommendationAPI.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/runawayhorse001/PySparkAPI/blob/master/doc/recommendationAPI.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -168,7 +168,7 @@
 <span id="recommendation-api"></span><span id="recommendationapi"></span><h1>6. Recommendation API<a class="headerlink" href="#module-pyspark.ml.recommendation" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pyspark.ml.recommendation.ALS">
-<em class="property">class </em><code class="descclassname">pyspark.ml.recommendation.</code><code class="descname">ALS</code><span class="sig-paren">(</span><em>rank=10</em>, <em>maxIter=10</em>, <em>regParam=0.1</em>, <em>numUserBlocks=10</em>, <em>numItemBlocks=10</em>, <em>implicitPrefs=False</em>, <em>alpha=1.0</em>, <em>userCol='user'</em>, <em>itemCol='item'</em>, <em>seed=None</em>, <em>ratingCol='rating'</em>, <em>nonnegative=False</em>, <em>checkpointInterval=10</em>, <em>intermediateStorageLevel='MEMORY_AND_DISK'</em>, <em>finalStorageLevel='MEMORY_AND_DISK'</em>, <em>coldStartStrategy='nan'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L31-L371"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pyspark.ml.recommendation.</code><code class="descname">ALS</code><span class="sig-paren">(</span><em>rank=10</em>, <em>maxIter=10</em>, <em>regParam=0.1</em>, <em>numUserBlocks=10</em>, <em>numItemBlocks=10</em>, <em>implicitPrefs=False</em>, <em>alpha=1.0</em>, <em>userCol='user'</em>, <em>itemCol='item'</em>, <em>seed=None</em>, <em>ratingCol='rating'</em>, <em>nonnegative=False</em>, <em>checkpointInterval=10</em>, <em>intermediateStorageLevel='MEMORY_AND_DISK'</em>, <em>finalStorageLevel='MEMORY_AND_DISK'</em>, <em>coldStartStrategy='nan'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L31-L371"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alternating Least Squares (ALS) matrix factorization.</p>
 <p>ALS attempts to estimate the ratings matrix <img class="math" src="_images/math/ee986df4f589aebb257576d30f6d23b09158d76f.png" alt="R"/> as the product of
 two lower-rank matrices, <img class="math" src="_images/math/b8e29a4c5659ed7c9e17fa3d8f0788d35cd17ebc.png" alt="X"/> and <img class="math" src="_images/math/5fac0234272cf482e4e00120989478f690b1fd9b.png" alt="Y"/>, i.e. <img class="math" src="_images/math/e1dca99bfafd9317a35e3ea329b27ca3b493e6b1.png" alt="X * Yt = R"/>. Typically
@@ -251,7 +251,7 @@ items.</p>
 </div>
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.getAlpha">
-<code class="descname">getAlpha</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L268-L273"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getAlpha" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getAlpha</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L268-L273"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getAlpha" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of alpha or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -260,7 +260,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.getColdStartStrategy">
-<code class="descname">getColdStartStrategy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L366-L371"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getColdStartStrategy" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getColdStartStrategy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L366-L371"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getColdStartStrategy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of coldStartStrategy or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 2.2.0.</span></p>
@@ -269,7 +269,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.getFinalStorageLevel">
-<code class="descname">getFinalStorageLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L352-L357"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getFinalStorageLevel" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getFinalStorageLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L352-L357"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getFinalStorageLevel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of finalStorageLevel or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 2.0.0.</span></p>
@@ -278,7 +278,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.getImplicitPrefs">
-<code class="descname">getImplicitPrefs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L254-L259"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getImplicitPrefs" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getImplicitPrefs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L254-L259"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getImplicitPrefs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of implicitPrefs or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -287,7 +287,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.getIntermediateStorageLevel">
-<code class="descname">getIntermediateStorageLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L338-L343"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getIntermediateStorageLevel" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getIntermediateStorageLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L338-L343"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getIntermediateStorageLevel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of intermediateStorageLevel or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 2.0.0.</span></p>
@@ -296,7 +296,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.getItemCol">
-<code class="descname">getItemCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L296-L301"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getItemCol" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getItemCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L296-L301"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getItemCol" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of itemCol or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -305,7 +305,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.getNonnegative">
-<code class="descname">getNonnegative</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L324-L329"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getNonnegative" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getNonnegative</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L324-L329"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getNonnegative" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of nonnegative or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -314,7 +314,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.getNumItemBlocks">
-<code class="descname">getNumItemBlocks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L232-L237"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getNumItemBlocks" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getNumItemBlocks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L232-L237"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getNumItemBlocks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of numItemBlocks or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -323,7 +323,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.getNumUserBlocks">
-<code class="descname">getNumUserBlocks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L218-L223"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getNumUserBlocks" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getNumUserBlocks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L218-L223"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getNumUserBlocks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of numUserBlocks or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -332,7 +332,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.getRank">
-<code class="descname">getRank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L204-L209"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getRank" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getRank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L204-L209"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getRank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of rank or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -341,7 +341,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.getRatingCol">
-<code class="descname">getRatingCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L310-L315"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getRatingCol" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getRatingCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L310-L315"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getRatingCol" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of ratingCol or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -350,7 +350,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.getUserCol">
-<code class="descname">getUserCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L282-L287"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getUserCol" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getUserCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L282-L287"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getUserCol" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the value of userCol or its default value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -359,7 +359,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setAlpha">
-<code class="descname">setAlpha</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L261-L266"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setAlpha" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setAlpha</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L261-L266"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setAlpha" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">alpha</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -368,7 +368,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setColdStartStrategy">
-<code class="descname">setColdStartStrategy</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L359-L364"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setColdStartStrategy" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setColdStartStrategy</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L359-L364"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setColdStartStrategy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">coldStartStrategy</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 2.2.0.</span></p>
@@ -377,7 +377,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setFinalStorageLevel">
-<code class="descname">setFinalStorageLevel</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L345-L350"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setFinalStorageLevel" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setFinalStorageLevel</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L345-L350"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setFinalStorageLevel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">finalStorageLevel</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 2.0.0.</span></p>
@@ -386,7 +386,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setImplicitPrefs">
-<code class="descname">setImplicitPrefs</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L247-L252"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setImplicitPrefs" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setImplicitPrefs</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L247-L252"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setImplicitPrefs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">implicitPrefs</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -395,7 +395,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setIntermediateStorageLevel">
-<code class="descname">setIntermediateStorageLevel</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L331-L336"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setIntermediateStorageLevel" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setIntermediateStorageLevel</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L331-L336"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setIntermediateStorageLevel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">intermediateStorageLevel</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 2.0.0.</span></p>
@@ -404,7 +404,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setItemCol">
-<code class="descname">setItemCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L289-L294"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setItemCol" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setItemCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L289-L294"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setItemCol" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">itemCol</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -413,7 +413,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setNonnegative">
-<code class="descname">setNonnegative</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L317-L322"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setNonnegative" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setNonnegative</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L317-L322"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setNonnegative" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">nonnegative</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -422,7 +422,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setNumBlocks">
-<code class="descname">setNumBlocks</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L239-L245"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setNumBlocks" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setNumBlocks</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L239-L245"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setNumBlocks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets both <code class="xref py py-attr docutils literal notranslate"><span class="pre">numUserBlocks</span></code> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">numItemBlocks</span></code> to the specific value.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -431,7 +431,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setNumItemBlocks">
-<code class="descname">setNumItemBlocks</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L225-L230"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setNumItemBlocks" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setNumItemBlocks</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L225-L230"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setNumItemBlocks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">numItemBlocks</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -440,7 +440,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setNumUserBlocks">
-<code class="descname">setNumUserBlocks</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L211-L216"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setNumUserBlocks" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setNumUserBlocks</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L211-L216"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setNumUserBlocks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">numUserBlocks</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -449,7 +449,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setParams">
-<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>rank=10</em>, <em>maxIter=10</em>, <em>regParam=0.1</em>, <em>numUserBlocks=10</em>, <em>numItemBlocks=10</em>, <em>implicitPrefs=False</em>, <em>alpha=1.0</em>, <em>userCol=&quot;user&quot;</em>, <em>itemCol=&quot;item&quot;</em>, <em>seed=None</em>, <em>ratingCol=&quot;rating&quot;</em>, <em>nonnegative=False</em>, <em>checkpointInterval=10</em>, <em>intermediateStorageLevel=&quot;MEMORY_AND_DISK&quot;</em>, <em>finalStorageLevel=&quot;MEMORY_AND_DISK&quot;</em>, <em>coldStartStrategy=&quot;nan&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L176-L192"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setParams" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>rank=10</em>, <em>maxIter=10</em>, <em>regParam=0.1</em>, <em>numUserBlocks=10</em>, <em>numItemBlocks=10</em>, <em>implicitPrefs=False</em>, <em>alpha=1.0</em>, <em>userCol=&quot;user&quot;</em>, <em>itemCol=&quot;item&quot;</em>, <em>seed=None</em>, <em>ratingCol=&quot;rating&quot;</em>, <em>nonnegative=False</em>, <em>checkpointInterval=10</em>, <em>intermediateStorageLevel=&quot;MEMORY_AND_DISK&quot;</em>, <em>finalStorageLevel=&quot;MEMORY_AND_DISK&quot;</em>, <em>coldStartStrategy=&quot;nan&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/__init__.py#L176-L192"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setParams" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets params for ALS.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -458,7 +458,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setRank">
-<code class="descname">setRank</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L197-L202"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setRank" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setRank</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L197-L202"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setRank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">rank</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -467,7 +467,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setRatingCol">
-<code class="descname">setRatingCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L303-L308"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setRatingCol" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setRatingCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L303-L308"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setRatingCol" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">ratingCol</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -476,7 +476,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALS.setUserCol">
-<code class="descname">setUserCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L275-L280"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setUserCol" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setUserCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L275-L280"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setUserCol" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">userCol</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -487,14 +487,14 @@ items.</p>
 
 <dl class="class">
 <dt id="pyspark.ml.recommendation.ALSModel">
-<em class="property">class </em><code class="descclassname">pyspark.ml.recommendation.</code><code class="descname">ALSModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L374-L455"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pyspark.ml.recommendation.</code><code class="descname">ALSModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L374-L455"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Model fitted by ALS.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
 </div>
 <dl class="attribute">
 <dt id="pyspark.ml.recommendation.ALSModel.itemFactors">
-<code class="descname">itemFactors</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.itemFactors" title="Permalink to this definition">¶</a></dt>
+<code class="descname">itemFactors</code><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.itemFactors" title="Permalink to this definition">¶</a></dt>
 <dd><p><img class="math" src="_images/math/f3d783930bc47148faded788e4796b332497140e.png" alt="id"/> and
 <img class="math" src="_images/math/0678c791df434d6776629c37c2d48b0f453b99f5.png" alt="features"/></p>
 <div class="versionadded">
@@ -512,7 +512,7 @@ items.</p>
 
 <dl class="attribute">
 <dt id="pyspark.ml.recommendation.ALSModel.rank">
-<code class="descname">rank</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.rank" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rank</code><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>rank of the matrix factorization model</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.4.0.</span></p>
@@ -521,7 +521,7 @@ items.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALSModel.recommendForAllItems">
-<code class="descname">recommendForAllItems</code><span class="sig-paren">(</span><em>numUsers</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L416-L425"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.recommendForAllItems" title="Permalink to this definition">¶</a></dt>
+<code class="descname">recommendForAllItems</code><span class="sig-paren">(</span><em>numUsers</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L416-L425"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.recommendForAllItems" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns top <img class="math" src="_images/math/8f2400118b8cc9a6c8d62e3e90c50418dde065a3.png" alt="numUsers"/> users recommended for each item, for all items.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -541,7 +541,7 @@ stored as an array of (userCol, rating) Rows.</td>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALSModel.recommendForAllUsers">
-<code class="descname">recommendForAllUsers</code><span class="sig-paren">(</span><em>numItems</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L405-L414"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.recommendForAllUsers" title="Permalink to this definition">¶</a></dt>
+<code class="descname">recommendForAllUsers</code><span class="sig-paren">(</span><em>numItems</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L405-L414"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.recommendForAllUsers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns top <img class="math" src="_images/math/3983b1f47bfdd0e00cd4494b2990e328422ec2db.png" alt="numItems"/> items recommended for each user, for all users.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -561,7 +561,7 @@ stored as an array of (itemCol, rating) Rows.</td>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALSModel.recommendForItemSubset">
-<code class="descname">recommendForItemSubset</code><span class="sig-paren">(</span><em>dataset</em>, <em>numUsers</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L442-L455"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.recommendForItemSubset" title="Permalink to this definition">¶</a></dt>
+<code class="descname">recommendForItemSubset</code><span class="sig-paren">(</span><em>dataset</em>, <em>numUsers</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L442-L455"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.recommendForItemSubset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns top <img class="math" src="_images/math/8f2400118b8cc9a6c8d62e3e90c50418dde065a3.png" alt="numUsers"/> users recommended for each item id in the input data set. Note that
 if there are duplicate ids in the input dataset, only one set of recommendations per unique
 id will be returned.</p>
@@ -589,7 +589,7 @@ stored as an array of (userCol, rating) Rows.</p>
 
 <dl class="method">
 <dt id="pyspark.ml.recommendation.ALSModel.recommendForUserSubset">
-<code class="descname">recommendForUserSubset</code><span class="sig-paren">(</span><em>dataset</em>, <em>numItems</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L427-L440"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.recommendForUserSubset" title="Permalink to this definition">¶</a></dt>
+<code class="descname">recommendForUserSubset</code><span class="sig-paren">(</span><em>dataset</em>, <em>numItems</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py#L427-L440"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.recommendForUserSubset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns top <img class="math" src="_images/math/3983b1f47bfdd0e00cd4494b2990e328422ec2db.png" alt="numItems"/> items recommended for each user id in the input data set. Note that
 if there are duplicate ids in the input dataset, only one set of recommendations per unique
 id will be returned.</p>
@@ -617,7 +617,7 @@ stored as an array of (itemCol, rating) Rows.</p>
 
 <dl class="attribute">
 <dt id="pyspark.ml.recommendation.ALSModel.userFactors">
-<code class="descname">userFactors</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.userFactors" title="Permalink to this definition">¶</a></dt>
+<code class="descname">userFactors</code><a class="reference external" href="https://github.com/runawayhorse001/PySparkAPI/blob/master/pyspark/ml/recommendation.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.userFactors" title="Permalink to this definition">¶</a></dt>
 <dd><p><img class="math" src="_images/math/f3d783930bc47148faded788e4796b332497140e.png" alt="id"/> and
 <img class="math" src="_images/math/0678c791df434d6776629c37c2d48b0f453b99f5.png" alt="features"/></p>
 <div class="versionadded">
