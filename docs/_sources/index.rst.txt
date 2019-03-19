@@ -5,7 +5,7 @@
   .. figure:: images/logo.png
     :align: center
 
-Welcome to my **PySpark API**! The PDF version can be downloaded from `HERE <PySparkAPI.pdf>`_.
+This my **PySpark API**! The PDF version can be downloaded from `HERE <PySparkAPI.pdf>`_.
 
 ========
 Contents
