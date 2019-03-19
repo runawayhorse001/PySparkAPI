@@ -1,0 +1,627 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8. Tuning API &mdash; PySpark API 1.00 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/icon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fix_rtd.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="9. Evaluation API" href="evaluationAPI.html" />
+    <link rel="prev" title="7. Pipeline API" href="pipelineAPI.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PySpark API
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statAPI.html">2. Stat API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regressionAPI.html">3. Regression API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classificationAPI.html">4. Classification API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clusteringAPI.html">5. Clustering API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recommendationAPI.html">6. Recommendation API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipelineAPI.html">7. Pipeline API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. Tuning API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluationAPI.html">9. Evaluation API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">10. Main Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PySpark API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>8. Tuning API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/runawayhorse001/statspy/blob/master/doc/tuningAPI.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyspark.ml.tuning">
+<span id="tuning-api"></span><span id="tuningapi"></span><h1>8. Tuning API<a class="headerlink" href="#module-pyspark.ml.tuning" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pyspark.ml.tuning.ParamGridBuilder">
+<em class="property">class </em><code class="descclassname">pyspark.ml.tuning.</code><code class="descname">ParamGridBuilder</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L59-L122"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.ParamGridBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builder for a param grid used in grid search-based model selection.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">ParamGridBuilder</span><span class="p">()</span> \
+<span class="gp">... </span>    <span class="o">.</span><span class="n">baseOn</span><span class="p">({</span><span class="n">lr</span><span class="o">.</span><span class="n">labelCol</span><span class="p">:</span> <span class="s1">&#39;l&#39;</span><span class="p">})</span> \
+<span class="gp">... </span>    <span class="o">.</span><span class="n">baseOn</span><span class="p">([</span><span class="n">lr</span><span class="o">.</span><span class="n">predictionCol</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">])</span> \
+<span class="gp">... </span>    <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">regParam</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span> \
+<span class="gp">... </span>    <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">maxIter</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> \
+<span class="gp">... </span>    <span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">expected</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="p">{</span><span class="n">lr</span><span class="o">.</span><span class="n">regParam</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">maxIter</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">labelCol</span><span class="p">:</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predictionCol</span><span class="p">:</span> <span class="s1">&#39;p&#39;</span><span class="p">},</span>
+<span class="gp">... </span>    <span class="p">{</span><span class="n">lr</span><span class="o">.</span><span class="n">regParam</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">maxIter</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">labelCol</span><span class="p">:</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predictionCol</span><span class="p">:</span> <span class="s1">&#39;p&#39;</span><span class="p">},</span>
+<span class="gp">... </span>    <span class="p">{</span><span class="n">lr</span><span class="o">.</span><span class="n">regParam</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">maxIter</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">labelCol</span><span class="p">:</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predictionCol</span><span class="p">:</span> <span class="s1">&#39;p&#39;</span><span class="p">},</span>
+<span class="gp">... </span>    <span class="p">{</span><span class="n">lr</span><span class="o">.</span><span class="n">regParam</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">maxIter</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">labelCol</span><span class="p">:</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predictionCol</span><span class="p">:</span> <span class="s1">&#39;p&#39;</span><span class="p">}]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">all</span><span class="p">([</span><span class="n">m</span> <span class="ow">in</span> <span class="n">expected</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">output</span><span class="p">])</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.tuning.ParamGridBuilder.addGrid">
+<code class="descname">addGrid</code><span class="sig-paren">(</span><em>param</em>, <em>values</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L87-L94"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.ParamGridBuilder.addGrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the given parameters in this grid to fixed values.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.ParamGridBuilder.baseOn">
+<code class="descname">baseOn</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L96-L108"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.ParamGridBuilder.baseOn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the given parameters in this grid to fixed values.
+Accepts either a parameter dictionary or a list of (parameter, value) pairs.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.ParamGridBuilder.build">
+<code class="descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L110-L122"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.ParamGridBuilder.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds and returns all combinations of parameters specified
+by the param grid.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.tuning.CrossValidator">
+<em class="property">class </em><code class="descclassname">pyspark.ml.tuning.</code><code class="descname">CrossValidator</code><span class="sig-paren">(</span><em>estimator=None</em>, <em>estimatorParamMaps=None</em>, <em>evaluator=None</em>, <em>numFolds=3</em>, <em>seed=None</em>, <em>parallelism=1</em>, <em>collectSubModels=False</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L202-L387"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidator" title="Permalink to this definition">¶</a></dt>
+<dd><p>K-fold cross validation performs model selection by splitting the dataset into a set of
+non-overlapping randomly partitioned folds which are used as separate training and test datasets
+e.g., with k=3 folds, K-fold cross validation will generate 3 (training, test) dataset pairs,
+each of which uses 2/3 of the data for training and 1/3 for testing. Each fold is used as the
+test set exactly once.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="k">import</span> <span class="n">BinaryClassificationEvaluator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">[(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">]),</span> <span class="mf">0.0</span><span class="p">),</span>
+<span class="gp">... </span>     <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.4</span><span class="p">]),</span> <span class="mf">1.0</span><span class="p">),</span>
+<span class="gp">... </span>     <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.5</span><span class="p">]),</span> <span class="mf">0.0</span><span class="p">),</span>
+<span class="gp">... </span>     <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.6</span><span class="p">]),</span> <span class="mf">1.0</span><span class="p">),</span>
+<span class="gp">... </span>     <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]),</span> <span class="mf">1.0</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span> <span class="o">=</span> <span class="n">ParamGridBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">maxIter</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span> <span class="o">=</span> <span class="n">BinaryClassificationEvaluator</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cv</span> <span class="o">=</span> <span class="n">CrossValidator</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">estimatorParamMaps</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span> <span class="n">evaluator</span><span class="o">=</span><span class="n">evaluator</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">parallelism</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cvModel</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cvModel</span><span class="o">.</span><span class="n">avgMetrics</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">0.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">cvModel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">dataset</span><span class="p">))</span>
+<span class="go">0.8333...</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.tuning.CrossValidator.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><em>extra=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L319-L337"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidator.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a copy of this instance with a randomly generated uid
+and some extra params. This copies creates a deep copy of
+the embedded paramMap, and copies the embedded and extra parameters over.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>extra</strong> – Extra parameters to copy to the new instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Copy of this instance</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.CrossValidator.getNumFolds">
+<code class="descname">getNumFolds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L271-L276"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidator.getNumFolds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of numFolds or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pyspark.ml.tuning.CrossValidator.read">
+<em class="property">classmethod </em><code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L344-L348"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidator.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an MLReader instance for this class.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.CrossValidator.setNumFolds">
+<code class="descname">setNumFolds</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L264-L269"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidator.setNumFolds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">numFolds</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.CrossValidator.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>estimator=None</em>, <em>estimatorParamMaps=None</em>, <em>evaluator=None</em>, <em>numFolds=3</em>, <em>seed=None</em>, <em>parallelism=1</em>, <em>collectSubModels=False</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L252-L262"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidator.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>setParams(self, estimator=None, estimatorParamMaps=None, evaluator=None, numFolds=3,                  seed=None, parallelism=1, collectSubModels=False):
+Sets params for cross validator.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.CrossValidator.write">
+<code class="descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L339-L342"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidator.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an MLWriter instance for this ML instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.tuning.CrossValidatorModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.tuning.</code><code class="descname">CrossValidatorModel</code><span class="sig-paren">(</span><em>bestModel</em>, <em>avgMetrics=[]</em>, <em>subModels=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L390-L486"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidatorModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>CrossValidatorModel contains the model with the highest average cross-validation
+metric across folds and uses this model to transform input data. CrossValidatorModel
+also tracks the metrics for each param map evaluated.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.tuning.CrossValidatorModel.avgMetrics">
+<code class="descname">avgMetrics</code><em class="property"> = None</em><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidatorModel.avgMetrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Average cross-validation metrics for each paramMap in
+CrossValidator.estimatorParamMaps, in the corresponding order.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.tuning.CrossValidatorModel.bestModel">
+<code class="descname">bestModel</code><em class="property"> = None</em><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidatorModel.bestModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>best model from cross validation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.CrossValidatorModel.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><em>extra=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L413-L430"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidatorModel.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a copy of this instance with a randomly generated uid
+and some extra params. This copies the underlying bestModel,
+creates a deep copy of the embedded paramMap, and
+copies the embedded and extra parameters over.
+It does not copy the extra Params into the subModels.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>extra</strong> – Extra parameters to copy to the new instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Copy of this instance</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pyspark.ml.tuning.CrossValidatorModel.read">
+<em class="property">classmethod </em><code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L437-L441"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidatorModel.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an MLReader instance for this class.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.tuning.CrossValidatorModel.subModels">
+<code class="descname">subModels</code><em class="property"> = None</em><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidatorModel.subModels" title="Permalink to this definition">¶</a></dt>
+<dd><p>sub model list from cross validation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.CrossValidatorModel.write">
+<code class="descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L432-L435"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.CrossValidatorModel.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an MLWriter instance for this ML instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.tuning.TrainValidationSplit">
+<em class="property">class </em><code class="descclassname">pyspark.ml.tuning.</code><code class="descname">TrainValidationSplit</code><span class="sig-paren">(</span><em>estimator=None</em>, <em>estimatorParamMaps=None</em>, <em>evaluator=None</em>, <em>trainRatio=0.75</em>, <em>parallelism=1</em>, <em>collectSubModels=False</em>, <em>seed=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L489-L664"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplit" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Validation for hyper-parameter tuning. Randomly splits the input dataset into train and
+validation sets, and uses evaluation metric on the validation set to select the best model.
+Similar to <a class="reference internal" href="#pyspark.ml.tuning.CrossValidator" title="pyspark.ml.tuning.CrossValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">CrossValidator</span></code></a>, but only splits the set once.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="k">import</span> <span class="n">BinaryClassificationEvaluator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">[(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">]),</span> <span class="mf">0.0</span><span class="p">),</span>
+<span class="gp">... </span>     <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.4</span><span class="p">]),</span> <span class="mf">1.0</span><span class="p">),</span>
+<span class="gp">... </span>     <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.5</span><span class="p">]),</span> <span class="mf">0.0</span><span class="p">),</span>
+<span class="gp">... </span>     <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.6</span><span class="p">]),</span> <span class="mf">1.0</span><span class="p">),</span>
+<span class="gp">... </span>     <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]),</span> <span class="mf">1.0</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span> <span class="o">=</span> <span class="n">ParamGridBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">maxIter</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span> <span class="o">=</span> <span class="n">BinaryClassificationEvaluator</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tvs</span> <span class="o">=</span> <span class="n">TrainValidationSplit</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">estimatorParamMaps</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span> <span class="n">evaluator</span><span class="o">=</span><span class="n">evaluator</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">parallelism</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tvsModel</span> <span class="o">=</span> <span class="n">tvs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">tvsModel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">dataset</span><span class="p">))</span>
+<span class="go">0.8333...</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.tuning.TrainValidationSplit.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><em>extra=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L597-L615"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplit.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a copy of this instance with a randomly generated uid
+and some extra params. This copies creates a deep copy of
+the embedded paramMap, and copies the embedded and extra parameters over.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>extra</strong> – Extra parameters to copy to the new instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Copy of this instance</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.TrainValidationSplit.getTrainRatio">
+<code class="descname">getTrainRatio</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L554-L559"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplit.getTrainRatio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of trainRatio or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pyspark.ml.tuning.TrainValidationSplit.read">
+<em class="property">classmethod </em><code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L622-L626"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplit.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an MLReader instance for this class.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.TrainValidationSplit.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>estimator=None</em>, <em>estimatorParamMaps=None</em>, <em>evaluator=None</em>, <em>trainRatio=0.75</em>, <em>parallelism=1</em>, <em>collectSubModels=False</em>, <em>seed=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L535-L545"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplit.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>setParams(self, estimator=None, estimatorParamMaps=None, evaluator=None, trainRatio=0.75,                  parallelism=1, collectSubModels=False, seed=None):
+Sets params for the train validation split.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.TrainValidationSplit.setTrainRatio">
+<code class="descname">setTrainRatio</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L547-L552"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplit.setTrainRatio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">trainRatio</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.TrainValidationSplit.write">
+<code class="descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L617-L620"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplit.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an MLWriter instance for this ML instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.tuning.TrainValidationSplitModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.tuning.</code><code class="descname">TrainValidationSplitModel</code><span class="sig-paren">(</span><em>bestModel</em>, <em>validationMetrics=[]</em>, <em>subModels=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L667-L764"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplitModel" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Model from train validation split.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.tuning.TrainValidationSplitModel.bestModel">
+<code class="descname">bestModel</code><em class="property"> = None</em><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplitModel.bestModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>best model from train validation split</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.TrainValidationSplitModel.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><em>extra=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L688-L706"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplitModel.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a copy of this instance with a randomly generated uid
+and some extra params. This copies the underlying bestModel,
+creates a deep copy of the embedded paramMap, and
+copies the embedded and extra parameters over.
+And, this creates a shallow copy of the validationMetrics.
+It does not copy the extra Params into the subModels.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>extra</strong> – Extra parameters to copy to the new instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Copy of this instance</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pyspark.ml.tuning.TrainValidationSplitModel.read">
+<em class="property">classmethod </em><code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L713-L717"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplitModel.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an MLReader instance for this class.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.tuning.TrainValidationSplitModel.subModels">
+<code class="descname">subModels</code><em class="property"> = None</em><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplitModel.subModels" title="Permalink to this definition">¶</a></dt>
+<dd><p>sub models from train validation split</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.tuning.TrainValidationSplitModel.validationMetrics">
+<code class="descname">validationMetrics</code><em class="property"> = None</em><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplitModel.validationMetrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>evaluated validation metrics</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.tuning.TrainValidationSplitModel.write">
+<code class="descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/tuning.py#L708-L711"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.tuning.TrainValidationSplitModel.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an MLWriter instance for this ML instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="evaluationAPI.html" class="btn btn-neutral float-right" title="9. Evaluation API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pipelineAPI.html" class="btn btn-neutral float-left" title="7. Pipeline API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Wenqiang Feng
+      <span class="lastupdated">
+        Last updated on Mar 19, 2019.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,691 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. Recommendation API &mdash; PySpark API 1.00 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/icon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fix_rtd.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7. Pipeline API" href="pipelineAPI.html" />
+    <link rel="prev" title="5. Clustering API" href="clusteringAPI.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PySpark API
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statAPI.html">2. Stat API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regressionAPI.html">3. Regression API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classificationAPI.html">4. Classification API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clusteringAPI.html">5. Clustering API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Recommendation API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipelineAPI.html">7. Pipeline API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuningAPI.html">8. Tuning API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluationAPI.html">9. Evaluation API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">10. Main Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PySpark API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>6. Recommendation API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/runawayhorse001/statspy/blob/master/doc/recommendationAPI.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyspark.ml.recommendation">
+<span id="recommendation-api"></span><span id="recommendationapi"></span><h1>6. Recommendation API<a class="headerlink" href="#module-pyspark.ml.recommendation" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pyspark.ml.recommendation.ALS">
+<em class="property">class </em><code class="descclassname">pyspark.ml.recommendation.</code><code class="descname">ALS</code><span class="sig-paren">(</span><em>rank=10</em>, <em>maxIter=10</em>, <em>regParam=0.1</em>, <em>numUserBlocks=10</em>, <em>numItemBlocks=10</em>, <em>implicitPrefs=False</em>, <em>alpha=1.0</em>, <em>userCol='user'</em>, <em>itemCol='item'</em>, <em>seed=None</em>, <em>ratingCol='rating'</em>, <em>nonnegative=False</em>, <em>checkpointInterval=10</em>, <em>intermediateStorageLevel='MEMORY_AND_DISK'</em>, <em>finalStorageLevel='MEMORY_AND_DISK'</em>, <em>coldStartStrategy='nan'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L31-L371"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alternating Least Squares (ALS) matrix factorization.</p>
+<p>ALS attempts to estimate the ratings matrix <img class="math" src="_images/math/ee986df4f589aebb257576d30f6d23b09158d76f.png" alt="R"/> as the product of
+two lower-rank matrices, <img class="math" src="_images/math/b8e29a4c5659ed7c9e17fa3d8f0788d35cd17ebc.png" alt="X"/> and <img class="math" src="_images/math/5fac0234272cf482e4e00120989478f690b1fd9b.png" alt="Y"/>, i.e. <img class="math" src="_images/math/e1dca99bfafd9317a35e3ea329b27ca3b493e6b1.png" alt="X * Yt = R"/>. Typically
+these approximations are called ‘factor’ matrices. The general
+approach is iterative. During each iteration, one of the factor
+matrices is held constant, while the other is solved for using least
+squares. The newly-solved factor matrix is then held constant while
+solving for the other factor matrix.</p>
+<p>This is a blocked implementation of the ALS factorization algorithm
+that groups the two sets of factors (referred to as “users” and
+“products”) into blocks and reduces communication by only sending
+one copy of each user vector to each product block on each
+iteration, and only for the product blocks that need that user’s
+feature vector. This is achieved by pre-computing some information
+about the ratings matrix to determine the “out-links” of each user
+(which blocks of products it will contribute to) and “in-link”
+information for each product (which of the feature vectors it
+receives from each user block it will depend on). This allows us to
+send only an array of feature vectors between each user block and
+product block, and have the product block find the users’ ratings
+and update the products based on these messages.</p>
+<p>For implicit preference data, the algorithm used is based on
+<a class="reference external" href="http://dx.doi.org/10.1109/ICDM.2008.22">“Collaborative Filtering for Implicit Feedback Datasets”,</a>, adapted for the blocked
+approach used here.</p>
+<p>Essentially instead of finding the low-rank approximations to the
+rating matrix <img class="math" src="_images/math/ee986df4f589aebb257576d30f6d23b09158d76f.png" alt="R"/>, this finds the approximations for a preference
+matrix <img class="math" src="_images/math/6c436cd90e03d1a3c2483dc544ba29503b361488.png" alt="P"/> where the elements of <img class="math" src="_images/math/6c436cd90e03d1a3c2483dc544ba29503b361488.png" alt="P"/> are 1 if r &gt; 0 and 0 if r &lt;= 0.
+The ratings then act as ‘confidence’ values related to strength of
+indicated user preferences rather than explicit ratings given to
+items.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;item&quot;</span><span class="p">,</span> <span class="s2">&quot;rating&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">als</span> <span class="o">=</span> <span class="n">ALS</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">maxIter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">als</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">rank</span>
+<span class="go">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">userFactors</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="go">[Row(id=0, features=[...]), Row(id=1, ...), Row(id=2, ...)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span> <span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;item&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">predictions</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">Row(user=0, item=2, prediction=-0.13807615637779236)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">predictions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">Row(user=1, item=0, prediction=2.6258413791656494)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">predictions</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">Row(user=2, item=0, prediction=-1.5018409490585327)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user_recs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">recommendForAllUsers</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user_recs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">user_recs</span><span class="o">.</span><span class="n">user</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>        <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;recommendations.item&quot;</span><span class="p">,</span> <span class="s2">&quot;recommendations.rating&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="go">[Row(item=[0, 1, 2], rating=[3.910..., 1.992..., -0.138...])]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">item_recs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">recommendForAllItems</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">item_recs</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">item_recs</span><span class="o">.</span><span class="n">item</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>        <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;recommendations.user&quot;</span><span class="p">,</span> <span class="s2">&quot;recommendations.rating&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="go">[Row(user=[2, 1, 0], rating=[4.901..., 3.981..., -0.138...])]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user_subset</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">user</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user_subset_recs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">recommendForUserSubset</span><span class="p">(</span><span class="n">user_subset</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user_subset_recs</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;recommendations.item&quot;</span><span class="p">,</span> <span class="s2">&quot;recommendations.rating&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="go">Row(item=[2, 1, 0], rating=[4.901..., 1.056..., -1.501...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">item_subset</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">item</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">item_subset_recs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">recommendForItemSubset</span><span class="p">(</span><span class="n">item_subset</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">item_subset_recs</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;recommendations.user&quot;</span><span class="p">,</span> <span class="s2">&quot;recommendations.rating&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="go">Row(user=[0, 1, 2], rating=[3.910..., 2.625..., -1.501...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">als_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/als&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">als</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">als_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">als2</span> <span class="o">=</span> <span class="n">ALS</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">als_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">als</span><span class="o">.</span><span class="n">getMaxIter</span><span class="p">()</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/als_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">ALSModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">rank</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">userFactors</span><span class="o">.</span><span class="n">collect</span><span class="p">())</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">userFactors</span><span class="o">.</span><span class="n">collect</span><span class="p">())</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">itemFactors</span><span class="o">.</span><span class="n">collect</span><span class="p">())</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">itemFactors</span><span class="o">.</span><span class="n">collect</span><span class="p">())</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.getAlpha">
+<code class="descname">getAlpha</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L268-L273"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getAlpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of alpha or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.getColdStartStrategy">
+<code class="descname">getColdStartStrategy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L366-L371"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getColdStartStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of coldStartStrategy or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.getFinalStorageLevel">
+<code class="descname">getFinalStorageLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L352-L357"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getFinalStorageLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of finalStorageLevel or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.getImplicitPrefs">
+<code class="descname">getImplicitPrefs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L254-L259"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getImplicitPrefs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of implicitPrefs or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.getIntermediateStorageLevel">
+<code class="descname">getIntermediateStorageLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L338-L343"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getIntermediateStorageLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of intermediateStorageLevel or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.getItemCol">
+<code class="descname">getItemCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L296-L301"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getItemCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of itemCol or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.getNonnegative">
+<code class="descname">getNonnegative</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L324-L329"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getNonnegative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of nonnegative or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.getNumItemBlocks">
+<code class="descname">getNumItemBlocks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L232-L237"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getNumItemBlocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of numItemBlocks or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.getNumUserBlocks">
+<code class="descname">getNumUserBlocks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L218-L223"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getNumUserBlocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of numUserBlocks or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.getRank">
+<code class="descname">getRank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L204-L209"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getRank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of rank or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.getRatingCol">
+<code class="descname">getRatingCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L310-L315"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getRatingCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of ratingCol or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.getUserCol">
+<code class="descname">getUserCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L282-L287"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.getUserCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of userCol or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setAlpha">
+<code class="descname">setAlpha</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L261-L266"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setAlpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">alpha</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setColdStartStrategy">
+<code class="descname">setColdStartStrategy</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L359-L364"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setColdStartStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">coldStartStrategy</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setFinalStorageLevel">
+<code class="descname">setFinalStorageLevel</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L345-L350"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setFinalStorageLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">finalStorageLevel</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setImplicitPrefs">
+<code class="descname">setImplicitPrefs</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L247-L252"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setImplicitPrefs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">implicitPrefs</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setIntermediateStorageLevel">
+<code class="descname">setIntermediateStorageLevel</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L331-L336"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setIntermediateStorageLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">intermediateStorageLevel</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setItemCol">
+<code class="descname">setItemCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L289-L294"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setItemCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">itemCol</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setNonnegative">
+<code class="descname">setNonnegative</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L317-L322"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setNonnegative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">nonnegative</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setNumBlocks">
+<code class="descname">setNumBlocks</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L239-L245"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setNumBlocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets both <code class="xref py py-attr docutils literal notranslate"><span class="pre">numUserBlocks</span></code> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">numItemBlocks</span></code> to the specific value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setNumItemBlocks">
+<code class="descname">setNumItemBlocks</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L225-L230"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setNumItemBlocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">numItemBlocks</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setNumUserBlocks">
+<code class="descname">setNumUserBlocks</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L211-L216"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setNumUserBlocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">numUserBlocks</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>rank=10</em>, <em>maxIter=10</em>, <em>regParam=0.1</em>, <em>numUserBlocks=10</em>, <em>numItemBlocks=10</em>, <em>implicitPrefs=False</em>, <em>alpha=1.0</em>, <em>userCol=&quot;user&quot;</em>, <em>itemCol=&quot;item&quot;</em>, <em>seed=None</em>, <em>ratingCol=&quot;rating&quot;</em>, <em>nonnegative=False</em>, <em>checkpointInterval=10</em>, <em>intermediateStorageLevel=&quot;MEMORY_AND_DISK&quot;</em>, <em>finalStorageLevel=&quot;MEMORY_AND_DISK&quot;</em>, <em>coldStartStrategy=&quot;nan&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L176-L192"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for ALS.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setRank">
+<code class="descname">setRank</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L197-L202"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setRank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">rank</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setRatingCol">
+<code class="descname">setRatingCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L303-L308"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setRatingCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">ratingCol</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALS.setUserCol">
+<code class="descname">setUserCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L275-L280"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALS.setUserCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">userCol</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.recommendation.ALSModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.recommendation.</code><code class="descname">ALSModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L374-L455"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by ALS.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.recommendation.ALSModel.itemFactors">
+<code class="descname">itemFactors</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.itemFactors" title="Permalink to this definition">¶</a></dt>
+<dd><p><img class="math" src="_images/math/f3d783930bc47148faded788e4796b332497140e.png" alt="id"/> and
+<img class="math" src="_images/math/0678c791df434d6776629c37c2d48b0f453b99f5.png" alt="features"/></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">a DataFrame that stores item factors in two columns</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.recommendation.ALSModel.rank">
+<code class="descname">rank</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>rank of the matrix factorization model</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALSModel.recommendForAllItems">
+<code class="descname">recommendForAllItems</code><span class="sig-paren">(</span><em>numUsers</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L416-L425"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.recommendForAllItems" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns top <img class="math" src="_images/math/8f2400118b8cc9a6c8d62e3e90c50418dde065a3.png" alt="numUsers"/> users recommended for each item, for all items.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>numUsers</strong> – max number of recommendations for each item</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a DataFrame of (itemCol, recommendations), where recommendations are
+stored as an array of (userCol, rating) Rows.</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALSModel.recommendForAllUsers">
+<code class="descname">recommendForAllUsers</code><span class="sig-paren">(</span><em>numItems</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L405-L414"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.recommendForAllUsers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns top <img class="math" src="_images/math/3983b1f47bfdd0e00cd4494b2990e328422ec2db.png" alt="numItems"/> items recommended for each user, for all users.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>numItems</strong> – max number of recommendations for each user</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a DataFrame of (userCol, recommendations), where recommendations are
+stored as an array of (itemCol, rating) Rows.</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALSModel.recommendForItemSubset">
+<code class="descname">recommendForItemSubset</code><span class="sig-paren">(</span><em>dataset</em>, <em>numUsers</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L442-L455"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.recommendForItemSubset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns top <img class="math" src="_images/math/8f2400118b8cc9a6c8d62e3e90c50418dde065a3.png" alt="numUsers"/> users recommended for each item id in the input data set. Note that
+if there are duplicate ids in the input dataset, only one set of recommendations per unique
+id will be returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dataset</strong> – a Dataset containing a column of item ids. The column name must match
+<img class="math" src="_images/math/129aeede032b5b16ff93bcd7c86c6c3e731ee6fc.png" alt="itemCol"/>.</li>
+<li><strong>numUsers</strong> – max number of recommendations for each item</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a DataFrame of (itemCol, recommendations), where recommendations are
+stored as an array of (userCol, rating) Rows.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.recommendation.ALSModel.recommendForUserSubset">
+<code class="descname">recommendForUserSubset</code><span class="sig-paren">(</span><em>dataset</em>, <em>numItems</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py#L427-L440"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.recommendForUserSubset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns top <img class="math" src="_images/math/3983b1f47bfdd0e00cd4494b2990e328422ec2db.png" alt="numItems"/> items recommended for each user id in the input data set. Note that
+if there are duplicate ids in the input dataset, only one set of recommendations per unique
+id will be returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dataset</strong> – a Dataset containing a column of user ids. The column name must match
+<img class="math" src="_images/math/2a23b978906beb5f470149e451c6e206afef9358.png" alt="userCol"/>.</li>
+<li><strong>numItems</strong> – max number of recommendations for each user</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a DataFrame of (userCol, recommendations), where recommendations are
+stored as an array of (itemCol, rating) Rows.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.recommendation.ALSModel.userFactors">
+<code class="descname">userFactors</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/recommendation.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.recommendation.ALSModel.userFactors" title="Permalink to this definition">¶</a></dt>
+<dd><p><img class="math" src="_images/math/f3d783930bc47148faded788e4796b332497140e.png" alt="id"/> and
+<img class="math" src="_images/math/0678c791df434d6776629c37c2d48b0f453b99f5.png" alt="features"/></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">a DataFrame that stores user factors in two columns</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pipelineAPI.html" class="btn btn-neutral float-right" title="7. Pipeline API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="clusteringAPI.html" class="btn btn-neutral float-left" title="5. Clustering API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Wenqiang Feng
+      <span class="lastupdated">
+        Last updated on Mar 19, 2019.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,463 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7. Pipeline API &mdash; PySpark API 1.00 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/icon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fix_rtd.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="8. Tuning API" href="tuningAPI.html" />
+    <link rel="prev" title="6. Recommendation API" href="recommendationAPI.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PySpark API
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statAPI.html">2. Stat API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regressionAPI.html">3. Regression API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classificationAPI.html">4. Classification API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clusteringAPI.html">5. Clustering API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recommendationAPI.html">6. Recommendation API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. Pipeline API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuningAPI.html">8. Tuning API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluationAPI.html">9. Evaluation API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">10. Main Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PySpark API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>7. Pipeline API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/runawayhorse001/statspy/blob/master/doc/pipelineAPI.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyspark.ml.pipeline">
+<span id="pipeline-api"></span><span id="pipelineapi"></span><h1>7. Pipeline API<a class="headerlink" href="#module-pyspark.ml.pipeline" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pyspark.ml.pipeline.Pipeline">
+<em class="property">class </em><code class="descclassname">pyspark.ml.pipeline.</code><code class="descname">Pipeline</code><span class="sig-paren">(</span><em>stages=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L33-L175"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.Pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple pipeline, which acts as an estimator. A Pipeline consists
+of a sequence of stages, each of which is either an
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Estimator</span></code> or a <code class="xref py py-class docutils literal notranslate"><span class="pre">Transformer</span></code>. When
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">Pipeline.fit()</span></code> is called, the stages are executed in
+order. If a stage is an <code class="xref py py-class docutils literal notranslate"><span class="pre">Estimator</span></code>, its
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">Estimator.fit()</span></code> method will be called on the input
+dataset to fit a model. Then the model, which is a transformer,
+will be used to transform the dataset as the input to the next
+stage. If a stage is a <code class="xref py py-class docutils literal notranslate"><span class="pre">Transformer</span></code>, its
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">Transformer.transform()</span></code> method will be called to produce
+the dataset for the next stage. The fitted model from a
+<a class="reference internal" href="#pyspark.ml.pipeline.Pipeline" title="pyspark.ml.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a> is a <a class="reference internal" href="#pyspark.ml.pipeline.PipelineModel" title="pyspark.ml.pipeline.PipelineModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineModel</span></code></a>, which
+consists of fitted models and transformers, corresponding to the
+pipeline stages. If stages is an empty list, the pipeline acts as an
+identity transformer.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.3.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.pipeline.Pipeline.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><em>extra=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L117-L129"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.Pipeline.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a copy of this instance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>extra</strong> – extra parameters</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">new instance</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.pipeline.Pipeline.getStages">
+<code class="descname">getStages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L75-L80"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.Pipeline.getStages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get pipeline stages.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pyspark.ml.pipeline.Pipeline.read">
+<em class="property">classmethod </em><code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L139-L143"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.Pipeline.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an MLReader instance for this class.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.pipeline.Pipeline.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>stages=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L82-L90"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.Pipeline.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for Pipeline.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.pipeline.Pipeline.setStages">
+<code class="descname">setStages</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L65-L73"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.Pipeline.setStages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set pipeline stages.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> – a list of transformers or estimators</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the pipeline instance</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.pipeline.Pipeline.write">
+<code class="descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L131-L137"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.Pipeline.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an MLWriter instance for this ML instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.pipeline.PipelineModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.pipeline.</code><code class="descname">PipelineModel</code><span class="sig-paren">(</span><em>stages</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L249-L321"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a compiled pipeline with transformers and fitted models.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.3.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.pipeline.PipelineModel.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><em>extra=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L265-L276"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineModel.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a copy of this instance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>extra</strong> – extra parameters</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">new instance</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pyspark.ml.pipeline.PipelineModel.read">
+<em class="property">classmethod </em><code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L286-L290"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineModel.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an MLReader instance for this class.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.pipeline.PipelineModel.write">
+<code class="descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L278-L284"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineModel.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an MLWriter instance for this ML instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.pipeline.PipelineModelReader">
+<em class="property">class </em><code class="descclassname">pyspark.ml.pipeline.</code><code class="descname">PipelineModelReader</code><span class="sig-paren">(</span><em>cls</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L230-L245"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineModelReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Private) Specialization of <code class="xref py py-class docutils literal notranslate"><span class="pre">MLReader</span></code> for <a class="reference internal" href="#pyspark.ml.pipeline.PipelineModel" title="pyspark.ml.pipeline.PipelineModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineModel</span></code></a> types</p>
+<dl class="method">
+<dt id="pyspark.ml.pipeline.PipelineModelReader.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L239-L245"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineModelReader.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the ML instance from the input path.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.pipeline.PipelineModelWriter">
+<em class="property">class </em><code class="descclassname">pyspark.ml.pipeline.</code><code class="descname">PipelineModelWriter</code><span class="sig-paren">(</span><em>instance</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L214-L226"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineModelWriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Private) Specialization of <code class="xref py py-class docutils literal notranslate"><span class="pre">MLWriter</span></code> for <a class="reference internal" href="#pyspark.ml.pipeline.PipelineModel" title="pyspark.ml.pipeline.PipelineModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineModel</span></code></a> types</p>
+<dl class="method">
+<dt id="pyspark.ml.pipeline.PipelineModelWriter.saveImpl">
+<code class="descname">saveImpl</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L223-L226"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineModelWriter.saveImpl" title="Permalink to this definition">¶</a></dt>
+<dd><p>save() handles overwriting and then calls this method.  Subclasses should override this
+method to implement the actual saving of the instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.pipeline.PipelineReader">
+<em class="property">class </em><code class="descclassname">pyspark.ml.pipeline.</code><code class="descname">PipelineReader</code><span class="sig-paren">(</span><em>cls</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L195-L210"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Private) Specialization of <code class="xref py py-class docutils literal notranslate"><span class="pre">MLReader</span></code> for <a class="reference internal" href="#pyspark.ml.pipeline.Pipeline" title="pyspark.ml.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a> types</p>
+<dl class="method">
+<dt id="pyspark.ml.pipeline.PipelineReader.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L204-L210"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineReader.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the ML instance from the input path.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.pipeline.PipelineSharedReadWrite">
+<em class="property">class </em><code class="descclassname">pyspark.ml.pipeline.</code><code class="descname">PipelineSharedReadWrite</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L325-L390"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineSharedReadWrite" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">DeveloperApi</p>
+</div>
+<p>Functions for <code class="xref py py-class docutils literal notranslate"><span class="pre">MLReader</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">MLWriter</span></code> shared between
+<a class="reference internal" href="#pyspark.ml.pipeline.Pipeline" title="pyspark.ml.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a> and <a class="reference internal" href="#pyspark.ml.pipeline.PipelineModel" title="pyspark.ml.pipeline.PipelineModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineModel</span></code></a></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+<dl class="staticmethod">
+<dt id="pyspark.ml.pipeline.PipelineSharedReadWrite.getStagePath">
+<em class="property">static </em><code class="descname">getStagePath</code><span class="sig-paren">(</span><em>stageUid</em>, <em>stageIdx</em>, <em>numStages</em>, <em>stagesDir</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L382-L390"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineSharedReadWrite.getStagePath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get path for saving the given stage.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="pyspark.ml.pipeline.PipelineSharedReadWrite.load">
+<em class="property">static </em><code class="descname">load</code><span class="sig-paren">(</span><em>metadata</em>, <em>sc</em>, <em>path</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L365-L380"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineSharedReadWrite.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load metadata and stages for a <a class="reference internal" href="#pyspark.ml.pipeline.Pipeline" title="pyspark.ml.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a> or <a class="reference internal" href="#pyspark.ml.pipeline.PipelineModel" title="pyspark.ml.pipeline.PipelineModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineModel</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">(UID, list of stages)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="pyspark.ml.pipeline.PipelineSharedReadWrite.saveImpl">
+<em class="property">static </em><code class="descname">saveImpl</code><span class="sig-paren">(</span><em>instance</em>, <em>stages</em>, <em>sc</em>, <em>path</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L350-L363"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineSharedReadWrite.saveImpl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save metadata and stages for a <a class="reference internal" href="#pyspark.ml.pipeline.Pipeline" title="pyspark.ml.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a> or <a class="reference internal" href="#pyspark.ml.pipeline.PipelineModel" title="pyspark.ml.pipeline.PipelineModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineModel</span></code></a>
+- save metadata to path/metadata
+- save stages to stages/IDX_UID</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="pyspark.ml.pipeline.PipelineSharedReadWrite.validateStages">
+<em class="property">static </em><code class="descname">validateStages</code><span class="sig-paren">(</span><em>stages</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L339-L348"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineSharedReadWrite.validateStages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that all stages are Writable</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.pipeline.PipelineWriter">
+<em class="property">class </em><code class="descclassname">pyspark.ml.pipeline.</code><code class="descname">PipelineWriter</code><span class="sig-paren">(</span><em>instance</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L179-L191"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineWriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Private) Specialization of <code class="xref py py-class docutils literal notranslate"><span class="pre">MLWriter</span></code> for <a class="reference internal" href="#pyspark.ml.pipeline.Pipeline" title="pyspark.ml.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a> types</p>
+<dl class="method">
+<dt id="pyspark.ml.pipeline.PipelineWriter.saveImpl">
+<code class="descname">saveImpl</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/pipeline.py#L188-L191"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.pipeline.PipelineWriter.saveImpl" title="Permalink to this definition">¶</a></dt>
+<dd><p>save() handles overwriting and then calls this method.  Subclasses should override this
+method to implement the actual saving of the instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tuningAPI.html" class="btn btn-neutral float-right" title="8. Tuning API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="recommendationAPI.html" class="btn btn-neutral float-left" title="6. Recommendation API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Wenqiang Feng
+      <span class="lastupdated">
+        Last updated on Mar 19, 2019.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

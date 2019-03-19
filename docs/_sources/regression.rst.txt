@@ -1,0 +1,9 @@
+.. _regression:
+
+==========
+Regression 
+==========
+
+.. automodule:: pyspark.ml.regression	
+   :members: 
+

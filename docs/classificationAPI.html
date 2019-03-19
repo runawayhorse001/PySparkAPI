@@ -1,0 +1,1743 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. Classification API &mdash; PySpark API 1.00 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/icon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fix_rtd.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. Clustering API" href="clusteringAPI.html" />
+    <link rel="prev" title="3. Regression API" href="regressionAPI.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PySpark API
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statAPI.html">2. Stat API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regressionAPI.html">3. Regression API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Classification API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clusteringAPI.html">5. Clustering API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recommendationAPI.html">6. Recommendation API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipelineAPI.html">7. Pipeline API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuningAPI.html">8. Tuning API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluationAPI.html">9. Evaluation API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">10. Main Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PySpark API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>4. Classification API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/runawayhorse001/statspy/blob/master/doc/classificationAPI.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyspark.ml.classification">
+<span id="classification-api"></span><span id="classificationapi"></span><h1>4. Classification API<a class="headerlink" href="#module-pyspark.ml.classification" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pyspark.ml.classification.LinearSVC">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">LinearSVC</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>maxIter=100</em>, <em>regParam=0.0</em>, <em>tol=1e-06</em>, <em>rawPredictionCol='rawPrediction'</em>, <em>fitIntercept=True</em>, <em>standardization=True</em>, <em>threshold=0.0</em>, <em>weightCol=None</em>, <em>aggregationDepth=2</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L66-L156"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LinearSVC" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Support_vector_machine#Linear_SVM">Linear SVM Classifier</a></p>
+<p>This binary classifier optimizes the Hinge Loss using the OWLQN optimizer.
+Only supports L2 regularization currently.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="k">import</span> <span class="n">Row</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="n">Row</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="n">Row</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">svm</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">(</span><span class="n">maxIter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">regParam</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">coefficients</span>
+<span class="go">DenseVector([0.0, -0.2792, -0.1833])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">intercept</span>
+<span class="go">1.0206118982229047</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">numClasses</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">numFeatures</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test0</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="n">Row</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">rawPrediction</span>
+<span class="go">DenseVector([-1.4831, 1.4831])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">svm_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/svm&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">svm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">svm_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">svm2</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">svm_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">svm2</span><span class="o">.</span><span class="n">getMaxIter</span><span class="p">()</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/svm_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">LinearSVCModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">intercept</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">intercept</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.classification.LinearSVC.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>maxIter=100</em>, <em>regParam=0.0</em>, <em>tol=1e-06</em>, <em>rawPredictionCol='rawPrediction'</em>, <em>fitIntercept=True</em>, <em>standardization=True</em>, <em>threshold=0.0</em>, <em>weightCol=None</em>, <em>aggregationDepth=2</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L139-L153"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LinearSVC.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>setParams(self, featuresCol=”features”, labelCol=”label”, predictionCol=”prediction”,                   maxIter=100, regParam=0.0, tol=1e-6, rawPredictionCol=”rawPrediction”,                   fitIntercept=True, standardization=True, threshold=0.0, weightCol=None,                   aggregationDepth=2):
+Sets params for Linear SVM Classifier.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.LinearSVCModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">LinearSVCModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L159-L182"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LinearSVCModel" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Model fitted by LinearSVC.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LinearSVCModel.coefficients">
+<code class="descname">coefficients</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LinearSVCModel.coefficients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model coefficients of Linear SVM Classifier.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LinearSVCModel.intercept">
+<code class="descname">intercept</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LinearSVCModel.intercept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model intercept of Linear SVM Classifier.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.LogisticRegression">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>maxIter=100</em>, <em>regParam=0.0</em>, <em>elasticNetParam=0.0</em>, <em>tol=1e-06</em>, <em>fitIntercept=True</em>, <em>threshold=0.5</em>, <em>thresholds=None</em>, <em>probabilityCol='probability'</em>, <em>rawPredictionCol='rawPrediction'</em>, <em>standardization=True</em>, <em>weightCol=None</em>, <em>aggregationDepth=2</em>, <em>family='auto'</em>, <em>lowerBoundsOnCoefficients=None</em>, <em>upperBoundsOnCoefficients=None</em>, <em>lowerBoundsOnIntercepts=None</em>, <em>upperBoundsOnIntercepts=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L186-L483"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logistic regression.
+This class supports multinomial logistic (softmax) and binomial logistic regression.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="k">import</span> <span class="n">Row</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bdf</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="n">Row</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="n">Row</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="n">Row</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="n">Row</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blor</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">regParam</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">weightCol</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span> <span class="o">=</span> <span class="n">blor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">bdf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span><span class="o">.</span><span class="n">coefficients</span>
+<span class="go">DenseVector([-1.080..., -0.646...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span><span class="o">.</span><span class="n">intercept</span>
+<span class="go">3.112...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data_path</span> <span class="o">=</span> <span class="s2">&quot;data/mllib/sample_multiclass_classification_data.txt&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mdf</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;libsvm&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlor</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">regParam</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">elasticNetParam</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;multinomial&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlorModel</span> <span class="o">=</span> <span class="n">mlor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">mdf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlorModel</span><span class="o">.</span><span class="n">coefficientMatrix</span>
+<span class="go">SparseMatrix(3, 4, [0, 1, 2, 3], [3, 2, 1], [1.87..., -2.75..., -0.50...], 1)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlorModel</span><span class="o">.</span><span class="n">interceptVector</span>
+<span class="go">DenseVector([0.04..., -0.42..., 0.37...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test0</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="n">Row</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">blorModel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">probability</span>
+<span class="go">DenseVector([0.02..., 0.97...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">rawPrediction</span>
+<span class="go">DenseVector([-3.54..., 3.54...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test1</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="n">Row</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blor</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s2">&quot;vector&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+    <span class="o">...</span>
+<span class="gr">TypeError</span>: <span class="n">Method setParams forces keyword arguments.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/lr&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blor</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">lr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr2</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">lr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr2</span><span class="o">.</span><span class="n">getRegParam</span><span class="p">()</span>
+<span class="go">0.01</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/lr_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">LogisticRegressionModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span><span class="o">.</span><span class="n">intercept</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">intercept</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span>
+<span class="go">LogisticRegressionModel: uid = ..., numClasses = 2, numFeatures = 2</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.3.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.getFamily">
+<code class="descname">getFamily</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L422-L427"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.getFamily" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">family</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.getLowerBoundsOnCoefficients">
+<code class="descname">getLowerBoundsOnCoefficients</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L436-L441"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.getLowerBoundsOnCoefficients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">lowerBoundsOnCoefficients</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.getLowerBoundsOnIntercepts">
+<code class="descname">getLowerBoundsOnIntercepts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L464-L469"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.getLowerBoundsOnIntercepts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">lowerBoundsOnIntercepts</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.getThreshold">
+<code class="descname">getThreshold</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L356-L375"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.getThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get threshold for binary classification.</p>
+<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">thresholds</span></code> is set with length 2 (i.e., binary classification),
+this returns the equivalent threshold:
+<img class="math" src="_images/math/0338f5f67483a554edce6845c452dcca94bf1342.png" alt="\frac{1}{1 + \frac{thresholds(0)}{thresholds(1)}}"/>.
+Otherwise, returns <code class="xref py py-attr docutils literal notranslate"><span class="pre">threshold</span></code> if set or its default value if unset.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.getThresholds">
+<code class="descname">getThresholds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L387-L400"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.getThresholds" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">thresholds</span></code> is set, return its value.
+Otherwise, if <code class="xref py py-attr docutils literal notranslate"><span class="pre">threshold</span></code> is set, return the equivalent thresholds for binary
+classification: (1-threshold, threshold).
+If neither are set, throw an error.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.getUpperBoundsOnCoefficients">
+<code class="descname">getUpperBoundsOnCoefficients</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L450-L455"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.getUpperBoundsOnCoefficients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">upperBoundsOnCoefficients</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.getUpperBoundsOnIntercepts">
+<code class="descname">getUpperBoundsOnIntercepts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L478-L483"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.getUpperBoundsOnIntercepts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">upperBoundsOnIntercepts</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.setFamily">
+<code class="descname">setFamily</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L415-L420"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.setFamily" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">family</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.setLowerBoundsOnCoefficients">
+<code class="descname">setLowerBoundsOnCoefficients</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L429-L434"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.setLowerBoundsOnCoefficients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">lowerBoundsOnCoefficients</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.setLowerBoundsOnIntercepts">
+<code class="descname">setLowerBoundsOnIntercepts</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L457-L462"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.setLowerBoundsOnIntercepts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">lowerBoundsOnIntercepts</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>maxIter=100</em>, <em>regParam=0.0</em>, <em>elasticNetParam=0.0</em>, <em>tol=1e-06</em>, <em>fitIntercept=True</em>, <em>threshold=0.5</em>, <em>thresholds=None</em>, <em>probabilityCol='probability'</em>, <em>rawPredictionCol='rawPrediction'</em>, <em>standardization=True</em>, <em>weightCol=None</em>, <em>aggregationDepth=2</em>, <em>family='auto'</em>, <em>lowerBoundsOnCoefficients=None</em>, <em>upperBoundsOnCoefficients=None</em>, <em>lowerBoundsOnIntercepts=None</em>, <em>upperBoundsOnIntercepts=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L318-L341"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>setParams(self, featuresCol=”features”, labelCol=”label”, predictionCol=”prediction”,                   maxIter=100, regParam=0.0, elasticNetParam=0.0, tol=1e-6, fitIntercept=True,                   threshold=0.5, thresholds=None, probabilityCol=”probability”,                   rawPredictionCol=”rawPrediction”, standardization=True, weightCol=None,                   aggregationDepth=2, family=”auto”,                   lowerBoundsOnCoefficients=None, upperBoundsOnCoefficients=None,                   lowerBoundsOnIntercepts=None, upperBoundsOnIntercepts=None):
+Sets params for logistic regression.
+If the threshold and thresholds Params are both set, they must be equivalent.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.setThreshold">
+<code class="descname">setThreshold</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L346-L354"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.setThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">threshold</span></code>.
+Clears value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">thresholds</span></code> if it has been set.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.setThresholds">
+<code class="descname">setThresholds</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L377-L385"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.setThresholds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">thresholds</span></code>.
+Clears value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">threshold</span></code> if it has been set.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.setUpperBoundsOnCoefficients">
+<code class="descname">setUpperBoundsOnCoefficients</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L443-L448"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.setUpperBoundsOnCoefficients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">upperBoundsOnCoefficients</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegression.setUpperBoundsOnIntercepts">
+<code class="descname">setUpperBoundsOnIntercepts</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L471-L476"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegression.setUpperBoundsOnIntercepts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">upperBoundsOnIntercepts</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.LogisticRegressionModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">LogisticRegressionModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L486-L568"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by LogisticRegression.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.3.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionModel.coefficientMatrix">
+<code class="descname">coefficientMatrix</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionModel.coefficientMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model coefficients.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionModel.coefficients">
+<code class="descname">coefficients</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionModel.coefficients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model coefficients of binomial logistic regression.
+An exception is thrown in the case of multinomial logistic regression.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegressionModel.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L553-L565"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionModel.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the model on a test dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dataset</strong> – Test dataset to evaluate model on, where dataset is an
+instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">pyspark.sql.DataFrame</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionModel.hasSummary">
+<code class="descname">hasSummary</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionModel.hasSummary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates whether a training summary exists for this model
+instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionModel.intercept">
+<code class="descname">intercept</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionModel.intercept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model intercept of binomial logistic regression.
+An exception is thrown in the case of multinomial logistic regression.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionModel.interceptVector">
+<code class="descname">interceptVector</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionModel.interceptVector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model intercept.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionModel.summary">
+<code class="descname">summary</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionModel.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets summary (e.g. accuracy/precision/recall, objective history, total iterations) of model
+trained on the training set. An exception is thrown if <img class="math" src="_images/math/134f6ca3d75afe3f2e3213867e8a4a507a1c1db7.png" alt="trainingSummary is None"/>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">LogisticRegressionSummary</code><span class="sig-paren">(</span><em>java_obj=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L571-L725"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Abstraction for Logistic Regression Results for a given model.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.accuracy">
+<code class="descname">accuracy</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns accuracy.
+(equals to the total number of correctly classified instances
+out of the total number of instances.)</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.fMeasureByLabel">
+<code class="descname">fMeasureByLabel</code><span class="sig-paren">(</span><em>beta=1.0</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L669-L674"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.fMeasureByLabel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns f-measure for each label (category).</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.falsePositiveRateByLabel">
+<code class="descname">falsePositiveRateByLabel</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.falsePositiveRateByLabel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns false positive rate for each label (category).</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.featuresCol">
+<code class="descname">featuresCol</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.featuresCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Field in “predictions” which gives the features of each instance
+as a vector.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.labelCol">
+<code class="descname">labelCol</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.labelCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Field in “predictions” which gives the true label of each
+instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.labels">
+<code class="descname">labels</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the sequence of labels in ascending order. This order matches the order used
+in metrics which are specified as arrays over labels, e.g., truePositiveRateByLabel.</p>
+<p>Note: In most cases, it will be values {0.0, 1.0, …, numClasses-1}, However, if the
+training set is missing a label, then all of the arrays over labels
+(e.g., from truePositiveRateByLabel) will be of length numClasses-1 instead of the
+expected numClasses.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.precisionByLabel">
+<code class="descname">precisionByLabel</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.precisionByLabel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns precision for each label (category).</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.predictionCol">
+<code class="descname">predictionCol</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.predictionCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Field in “predictions” which gives the prediction of each class.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.predictions">
+<code class="descname">predictions</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.predictions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dataframe outputted by the model’s <img class="math" src="_images/math/d74f393118afb100c339b1eb26b681a55360415a.png" alt="transform"/> method.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.probabilityCol">
+<code class="descname">probabilityCol</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.probabilityCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Field in “predictions” which gives the probability
+of each class as a vector.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.recallByLabel">
+<code class="descname">recallByLabel</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.recallByLabel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns recall for each label (category).</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.truePositiveRateByLabel">
+<code class="descname">truePositiveRateByLabel</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.truePositiveRateByLabel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true positive rate for each label (category).</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.weightedFMeasure">
+<code class="descname">weightedFMeasure</code><span class="sig-paren">(</span><em>beta=1.0</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L720-L725"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.weightedFMeasure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns weighted averaged f-measure.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.weightedFalsePositiveRate">
+<code class="descname">weightedFalsePositiveRate</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.weightedFalsePositiveRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns weighted false positive rate.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.weightedPrecision">
+<code class="descname">weightedPrecision</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.weightedPrecision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns weighted averaged precision.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.weightedRecall">
+<code class="descname">weightedRecall</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.weightedRecall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns weighted averaged recall.
+(equals to precision, recall and f-measure)</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionSummary.weightedTruePositiveRate">
+<code class="descname">weightedTruePositiveRate</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionSummary.weightedTruePositiveRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns weighted true positive rate.
+(equals to precision, recall and f-measure)</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.LogisticRegressionTrainingSummary">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">LogisticRegressionTrainingSummary</code><span class="sig-paren">(</span><em>java_obj=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L729-L755"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionTrainingSummary" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Abstraction for multinomial Logistic Regression Training results.
+Currently, the training summary ignores the training weights except
+for the objective trace.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionTrainingSummary.objectiveHistory">
+<code class="descname">objectiveHistory</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionTrainingSummary.objectiveHistory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Objective function (scaled loss + regularization) at each
+iteration.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.LogisticRegressionTrainingSummary.totalIterations">
+<code class="descname">totalIterations</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.LogisticRegressionTrainingSummary.totalIterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of training iterations until termination.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.BinaryLogisticRegressionSummary">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">BinaryLogisticRegressionSummary</code><span class="sig-paren">(</span><em>java_obj=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L759-L851"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.BinaryLogisticRegressionSummary" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Binary Logistic regression results for a given model.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.classification.BinaryLogisticRegressionSummary.areaUnderROC">
+<code class="descname">areaUnderROC</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.BinaryLogisticRegressionSummary.areaUnderROC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the area under the receiver operating characteristic
+(ROC) curve.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This ignores instance weights (setting all to 1.0) from
+<img class="math" src="_images/math/cd7f8a37e823cca193e47ddabdaa672bff8768e0.png" alt="LogisticRegression.weightCol"/>. This will change in later Spark
+versions.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.BinaryLogisticRegressionSummary.fMeasureByThreshold">
+<code class="descname">fMeasureByThreshold</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.BinaryLogisticRegressionSummary.fMeasureByThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dataframe with two fields (threshold, F-Measure) curve
+with beta = 1.0.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This ignores instance weights (setting all to 1.0) from
+<img class="math" src="_images/math/cd7f8a37e823cca193e47ddabdaa672bff8768e0.png" alt="LogisticRegression.weightCol"/>. This will change in later Spark
+versions.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.BinaryLogisticRegressionSummary.pr">
+<code class="descname">pr</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.BinaryLogisticRegressionSummary.pr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the precision-recall curve, which is a Dataframe
+containing two fields recall, precision with (0.0, 1.0) prepended
+to it.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This ignores instance weights (setting all to 1.0) from
+<img class="math" src="_images/math/cd7f8a37e823cca193e47ddabdaa672bff8768e0.png" alt="LogisticRegression.weightCol"/>. This will change in later Spark
+versions.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.BinaryLogisticRegressionSummary.precisionByThreshold">
+<code class="descname">precisionByThreshold</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.BinaryLogisticRegressionSummary.precisionByThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dataframe with two fields (threshold, precision) curve.
+Every possible probability obtained in transforming the dataset
+are used as thresholds used in calculating the precision.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This ignores instance weights (setting all to 1.0) from
+<img class="math" src="_images/math/cd7f8a37e823cca193e47ddabdaa672bff8768e0.png" alt="LogisticRegression.weightCol"/>. This will change in later Spark
+versions.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.BinaryLogisticRegressionSummary.recallByThreshold">
+<code class="descname">recallByThreshold</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.BinaryLogisticRegressionSummary.recallByThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dataframe with two fields (threshold, recall) curve.
+Every possible probability obtained in transforming the dataset
+are used as thresholds used in calculating the recall.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This ignores instance weights (setting all to 1.0) from
+<img class="math" src="_images/math/cd7f8a37e823cca193e47ddabdaa672bff8768e0.png" alt="LogisticRegression.weightCol"/>. This will change in later Spark
+versions.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.BinaryLogisticRegressionSummary.roc">
+<code class="descname">roc</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.BinaryLogisticRegressionSummary.roc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the receiver operating characteristic (ROC) curve,
+which is a Dataframe having two fields (FPR, TPR) with
+(0.0, 0.0) prepended and (1.0, 1.0) appended to it.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Receiver_operating_characteristic">Wikipedia reference</a></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This ignores instance weights (setting all to 1.0) from
+<img class="math" src="_images/math/cd7f8a37e823cca193e47ddabdaa672bff8768e0.png" alt="LogisticRegression.weightCol"/>. This will change in later Spark
+versions.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.BinaryLogisticRegressionTrainingSummary">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">BinaryLogisticRegressionTrainingSummary</code><span class="sig-paren">(</span><em>java_obj=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L855-L864"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.BinaryLogisticRegressionTrainingSummary" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Binary Logistic regression training results for a given model.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.DecisionTreeClassifier">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">DecisionTreeClassifier</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>probabilityCol='probability'</em>, <em>rawPredictionCol='rawPrediction'</em>, <em>maxDepth=5</em>, <em>maxBins=32</em>, <em>minInstancesPerNode=1</em>, <em>minInfoGain=0.0</em>, <em>maxMemoryInMB=256</em>, <em>cacheNodeIds=False</em>, <em>checkpointInterval=10</em>, <em>impurity='gini'</em>, <em>seed=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L908-L1007"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.DecisionTreeClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="http://en.wikipedia.org/wiki/Decision_tree_learning">Decision tree</a>
+learning algorithm for classification.
+It supports both binary and multiclass labels, as well as both continuous and categorical
+features.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="k">import</span> <span class="n">StringIndexer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[]))],</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stringIndexer</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;indexed&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">si_model</span> <span class="o">=</span> <span class="n">stringIndexer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">td</span> <span class="o">=</span> <span class="n">si_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">maxDepth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;indexed&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">td</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">numNodes</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">depth</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">featureImportances</span>
+<span class="go">SparseVector(1, {0: 1.0})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">numFeatures</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">numClasses</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">toDebugString</span><span class="p">)</span>
+<span class="go">DecisionTreeClassificationModel (uid=...) of depth 1 with 3 nodes...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test0</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">probability</span>
+<span class="go">DenseVector([1.0, 0.0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">rawPrediction</span>
+<span class="go">DenseVector([1.0, 0.0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test1</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">1.0</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dtc_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/dtc&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">dtc_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dt2</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dtc_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dt2</span><span class="o">.</span><span class="n">getMaxDepth</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/dtc_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">DecisionTreeClassificationModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">featureImportances</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">featureImportances</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.classification.DecisionTreeClassifier.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>featuresCol=&quot;features&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>probabilityCol=&quot;probability&quot;</em>, <em>rawPredictionCol=&quot;rawPrediction&quot;</em>, <em>maxDepth=5</em>, <em>maxBins=32</em>, <em>minInstancesPerNode=1</em>, <em>minInfoGain=0.0</em>, <em>maxMemoryInMB=256</em>, <em>cacheNodeIds=False</em>, <em>checkpointInterval=10</em>, <em>impurity=&quot;gini&quot;</em>, <em>seed=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L988-L1004"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.DecisionTreeClassifier.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for the DecisionTreeClassifier.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.DecisionTreeClassificationModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">DecisionTreeClassificationModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1011-L1038"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.DecisionTreeClassificationModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by DecisionTreeClassifier.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.classification.DecisionTreeClassificationModel.featureImportances">
+<code class="descname">featureImportances</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.DecisionTreeClassificationModel.featureImportances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate of the importance of each feature.</p>
+<p>This generalizes the idea of “Gini” importance to other losses,
+following the explanation of Gini importance from “Random Forests” documentation
+by Leo Breiman and Adele Cutler, and following the implementation from scikit-learn.</p>
+<dl class="docutils">
+<dt>This feature importance is calculated as follows:</dt>
+<dd><ul class="first last simple">
+<li>importance(feature j) = sum (over nodes which split on feature j) of the gain,
+where gain is scaled by the number of instances passing through node</li>
+<li>Normalize importances for tree to sum to 1.</li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Feature importance for single decision trees can have high variance due to
+correlated predictor variables. Consider using a <a class="reference internal" href="#pyspark.ml.classification.RandomForestClassifier" title="pyspark.ml.classification.RandomForestClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code></a>
+to determine feature importance instead.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.GBTClassifier">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">GBTClassifier</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>maxDepth=5</em>, <em>maxBins=32</em>, <em>minInstancesPerNode=1</em>, <em>minInfoGain=0.0</em>, <em>maxMemoryInMB=256</em>, <em>cacheNodeIds=False</em>, <em>checkpointInterval=10</em>, <em>lossType='logistic'</em>, <em>maxIter=20</em>, <em>stepSize=0.1</em>, <em>seed=None</em>, <em>subsamplingRate=1.0</em>, <em>featureSubsetStrategy='all'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1178-L1322"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.GBTClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="http://en.wikipedia.org/wiki/Gradient_boosting">Gradient-Boosted Trees (GBTs)</a>
+learning algorithm for classification.
+It supports binary labels, as well as both continuous and categorical features.</p>
+<p>The implementation is based upon: J.H. Friedman. “Stochastic Gradient Boosting.” 1999.</p>
+<p>Notes on Gradient Boosting vs. TreeBoost:
+- This implementation is for Stochastic Gradient Boosting, not for TreeBoost.
+- Both algorithms learn tree ensembles by minimizing loss functions.
+- TreeBoost (Friedman, 1999) additionally modifies the outputs at tree leaf nodes
+based on the loss function, whereas the original gradient boosting method does not.
+- We expect to implement TreeBoost in the future:
+<a class="reference external" href="https://issues.apache.org/jira/browse/SPARK-4240">SPARK-4240</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Multiclass labels are not currently supported.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">allclose</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="k">import</span> <span class="n">StringIndexer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[]))],</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stringIndexer</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;indexed&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">si_model</span> <span class="o">=</span> <span class="n">stringIndexer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">td</span> <span class="o">=</span> <span class="n">si_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gbt</span> <span class="o">=</span> <span class="n">GBTClassifier</span><span class="p">(</span><span class="n">maxIter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">maxDepth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;indexed&quot;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gbt</span><span class="o">.</span><span class="n">getFeatureSubsetStrategy</span><span class="p">()</span>
+<span class="go">&#39;all&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">gbt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">td</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">featureImportances</span>
+<span class="go">SparseVector(1, {0: 1.0})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">allclose</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">treeWeights</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test0</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test1</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">totalNumNodes</span>
+<span class="go">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">toDebugString</span><span class="p">)</span>
+<span class="go">GBTClassificationModel (uid=...)...with 5 trees...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gbtc_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;gbtc&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gbt</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">gbtc_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gbt2</span> <span class="o">=</span> <span class="n">GBTClassifier</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">gbtc_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gbt2</span><span class="o">.</span><span class="n">getMaxDepth</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;gbtc_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">GBTClassificationModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">featureImportances</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">featureImportances</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">treeWeights</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">treeWeights</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">trees</span>
+<span class="go">[DecisionTreeRegressionModel (uid=...) of depth..., DecisionTreeRegressionModel...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">validation</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">),)],</span>
+<span class="gp">... </span>             <span class="p">[</span><span class="s2">&quot;indexed&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">evaluateEachIteration</span><span class="p">(</span><span class="n">validation</span><span class="p">)</span>
+<span class="go">[0.25..., 0.23..., 0.21..., 0.19..., 0.18...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">numClasses</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.classification.GBTClassifier.getLossType">
+<code class="descname">getLossType</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1310-L1315"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.GBTClassifier.getLossType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of lossType or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.GBTClassifier.setFeatureSubsetStrategy">
+<code class="descname">setFeatureSubsetStrategy</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1317-L1322"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.GBTClassifier.setFeatureSubsetStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">featureSubsetStrategy</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.GBTClassifier.setLossType">
+<code class="descname">setLossType</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1303-L1308"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.GBTClassifier.setLossType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">lossType</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.GBTClassifier.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>featuresCol=&quot;features&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>maxDepth=5</em>, <em>maxBins=32</em>, <em>minInstancesPerNode=1</em>, <em>minInfoGain=0.0</em>, <em>maxMemoryInMB=256</em>, <em>cacheNodeIds=False</em>, <em>checkpointInterval=10</em>, <em>lossType=&quot;logistic&quot;</em>, <em>maxIter=20</em>, <em>stepSize=0.1</em>, <em>seed=None</em>, <em>subsamplingRate=1.0</em>, <em>featureSubsetStrategy=&quot;all&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L1282-L1298"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.GBTClassifier.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for Gradient Boosted Tree Classification.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.GBTClassificationModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">GBTClassificationModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1325-L1363"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.GBTClassificationModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by GBTClassifier.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.classification.GBTClassificationModel.evaluateEachIteration">
+<code class="descname">evaluateEachIteration</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1354-L1363"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.GBTClassificationModel.evaluateEachIteration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to compute error or loss for every iteration of gradient boosting.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dataset</strong> – Test dataset to evaluate model on, where dataset is an
+instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">pyspark.sql.DataFrame</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.GBTClassificationModel.featureImportances">
+<code class="descname">featureImportances</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.GBTClassificationModel.featureImportances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate of the importance of each feature.</p>
+<p>Each feature’s importance is the average of its importance across all trees in the ensemble
+The importance vector is normalized to sum to 1. This method is suggested by Hastie et al.
+(Hastie, Tibshirani, Friedman. “The Elements of Statistical Learning, 2nd Edition.” 2001.)
+and follows the implementation from scikit-learn.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#pyspark.ml.classification.DecisionTreeClassificationModel.featureImportances" title="pyspark.ml.classification.DecisionTreeClassificationModel.featureImportances"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DecisionTreeClassificationModel.featureImportances</span></code></a></p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.GBTClassificationModel.trees">
+<code class="descname">trees</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.GBTClassificationModel.trees" title="Permalink to this definition">¶</a></dt>
+<dd><p>These have null parent Estimators.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Trees in this ensemble. Warning</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.RandomForestClassifier">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">RandomForestClassifier</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>probabilityCol='probability'</em>, <em>rawPredictionCol='rawPrediction'</em>, <em>maxDepth=5</em>, <em>maxBins=32</em>, <em>minInstancesPerNode=1</em>, <em>minInfoGain=0.0</em>, <em>maxMemoryInMB=256</em>, <em>cacheNodeIds=False</em>, <em>checkpointInterval=10</em>, <em>impurity='gini'</em>, <em>numTrees=20</em>, <em>featureSubsetStrategy='auto'</em>, <em>seed=None</em>, <em>subsamplingRate=1.0</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1042-L1144"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.RandomForestClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="http://en.wikipedia.org/wiki/Random_forest">Random Forest</a>
+learning algorithm for classification.
+It supports both binary and multiclass labels, as well as both continuous and categorical
+features.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">allclose</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="k">import</span> <span class="n">StringIndexer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[]))],</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stringIndexer</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;indexed&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">si_model</span> <span class="o">=</span> <span class="n">stringIndexer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">td</span> <span class="o">=</span> <span class="n">si_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">numTrees</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">maxDepth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;indexed&quot;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">td</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">featureImportances</span>
+<span class="go">SparseVector(1, {0: 1.0})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">allclose</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">treeWeights</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test0</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">probability</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">rawPrediction</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test1</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">trees</span>
+<span class="go">[DecisionTreeClassificationModel (uid=...) of depth..., DecisionTreeClassificationModel...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rfc_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/rfc&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rf</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">rfc_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rf2</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">rfc_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rf2</span><span class="o">.</span><span class="n">getNumTrees</span><span class="p">()</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/rfc_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">RandomForestClassificationModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">featureImportances</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">featureImportances</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.classification.RandomForestClassifier.setFeatureSubsetStrategy">
+<code class="descname">setFeatureSubsetStrategy</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1139-L1144"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.RandomForestClassifier.setFeatureSubsetStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">featureSubsetStrategy</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.RandomForestClassifier.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>featuresCol=&quot;features&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>probabilityCol=&quot;probability&quot;</em>, <em>rawPredictionCol=&quot;rawPrediction&quot;</em>, <em>maxDepth=5</em>, <em>maxBins=32</em>, <em>minInstancesPerNode=1</em>, <em>minInfoGain=0.0</em>, <em>maxMemoryInMB=256</em>, <em>cacheNodeIds=False</em>, <em>checkpointInterval=10</em>, <em>seed=None</em>, <em>impurity=&quot;gini&quot;</em>, <em>numTrees=20</em>, <em>featureSubsetStrategy=&quot;auto&quot;</em>, <em>subsamplingRate=1.0</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L1118-L1134"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.RandomForestClassifier.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for linear classification.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.RandomForestClassificationModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">RandomForestClassificationModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1147-L1174"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.RandomForestClassificationModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by RandomForestClassifier.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.classification.RandomForestClassificationModel.featureImportances">
+<code class="descname">featureImportances</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.RandomForestClassificationModel.featureImportances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate of the importance of each feature.</p>
+<p>Each feature’s importance is the average of its importance across all trees in the ensemble
+The importance vector is normalized to sum to 1. This method is suggested by Hastie et al.
+(Hastie, Tibshirani, Friedman. “The Elements of Statistical Learning, 2nd Edition.” 2001.)
+and follows the implementation from scikit-learn.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#pyspark.ml.classification.DecisionTreeClassificationModel.featureImportances" title="pyspark.ml.classification.DecisionTreeClassificationModel.featureImportances"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DecisionTreeClassificationModel.featureImportances</span></code></a></p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.RandomForestClassificationModel.trees">
+<code class="descname">trees</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.RandomForestClassificationModel.trees" title="Permalink to this definition">¶</a></dt>
+<dd><p>These have null parent Estimators.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Trees in this ensemble. Warning</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.NaiveBayes">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">NaiveBayes</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>probabilityCol='probability'</em>, <em>rawPredictionCol='rawPrediction'</em>, <em>smoothing=1.0</em>, <em>modelType='multinomial'</em>, <em>thresholds=None</em>, <em>weightCol=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1367-L1488"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.NaiveBayes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Naive Bayes Classifiers.
+It supports both Multinomial and Bernoulli NB. <a class="reference external" href="http://nlp.stanford.edu/IR-book/html/htmledition/naive-bayes-text-classification-1.html">Multinomial NB</a>
+can handle finitely supported discrete data. For example, by converting documents into
+TF-IDF vectors, it can be used for document classification. By making every vector a
+binary (0/1) data, it can also be used as <a class="reference external" href="http://nlp.stanford.edu/IR-book/html/htmledition/the-bernoulli-model-1.html">Bernoulli NB</a>.
+The input feature values must be nonnegative.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="k">import</span> <span class="n">Row</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="n">Row</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])),</span>
+<span class="gp">... </span>    <span class="n">Row</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])),</span>
+<span class="gp">... </span>    <span class="n">Row</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]))])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nb</span> <span class="o">=</span> <span class="n">NaiveBayes</span><span class="p">(</span><span class="n">smoothing</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">modelType</span><span class="o">=</span><span class="s2">&quot;multinomial&quot;</span><span class="p">,</span> <span class="n">weightCol</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">pi</span>
+<span class="go">DenseVector([-0.81..., -0.58...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">theta</span>
+<span class="go">DenseMatrix(2, 2, [-0.91..., -0.51..., -0.40..., -1.09...], 1)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test0</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="n">Row</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">probability</span>
+<span class="go">DenseVector([0.32..., 0.67...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">rawPrediction</span>
+<span class="go">DenseVector([-1.72..., -0.99...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test1</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="n">Row</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nb_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/nb&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">nb_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nb2</span> <span class="o">=</span> <span class="n">NaiveBayes</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">nb_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nb2</span><span class="o">.</span><span class="n">getSmoothing</span><span class="p">()</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/nb_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">NaiveBayesModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">pi</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">pi</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">theta</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">theta</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nb</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">setThresholds</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">10.00</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model3</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">model3</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">0.0</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.classification.NaiveBayes.getModelType">
+<code class="descname">getModelType</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1483-L1488"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.NaiveBayes.getModelType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of modelType or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.NaiveBayes.getSmoothing">
+<code class="descname">getSmoothing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1469-L1474"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.NaiveBayes.getSmoothing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of smoothing or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.NaiveBayes.setModelType">
+<code class="descname">setModelType</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1476-L1481"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.NaiveBayes.setModelType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">modelType</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.NaiveBayes.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>featuresCol=&quot;features&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>probabilityCol=&quot;probability&quot;</em>, <em>rawPredictionCol=&quot;rawPrediction&quot;</em>, <em>smoothing=1.0</em>, <em>modelType=&quot;multinomial&quot;</em>, <em>thresholds=None</em>, <em>weightCol=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L1445-L1457"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.NaiveBayes.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for Naive Bayes.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.NaiveBayes.setSmoothing">
+<code class="descname">setSmoothing</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1462-L1467"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.NaiveBayes.setSmoothing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">smoothing</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.NaiveBayesModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">NaiveBayesModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1491-L1512"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.NaiveBayesModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by NaiveBayes.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.classification.NaiveBayesModel.pi">
+<code class="descname">pi</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.NaiveBayesModel.pi" title="Permalink to this definition">¶</a></dt>
+<dd><p>log of class priors.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.NaiveBayesModel.theta">
+<code class="descname">theta</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.NaiveBayesModel.theta" title="Permalink to this definition">¶</a></dt>
+<dd><p>log of class conditional probabilities.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.MultilayerPerceptronClassifier">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">MultilayerPerceptronClassifier</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>maxIter=100</em>, <em>tol=1e-06</em>, <em>seed=None</em>, <em>layers=None</em>, <em>blockSize=128</em>, <em>stepSize=0.03</em>, <em>solver='l-bfgs'</em>, <em>initialWeights=None</em>, <em>probabilityCol='probability'</em>, <em>rawPredictionCol='rawPrediction'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1516-L1676"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.MultilayerPerceptronClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classifier trainer based on the Multilayer Perceptron.
+Each layer has sigmoid activation function, output layer has softmax.
+Number of inputs has to be equal to the size of feature vectors.
+Number of outputs has to be equal to the total number of labels.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]))],</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlp</span> <span class="o">=</span> <span class="n">MultilayerPerceptronClassifier</span><span class="p">(</span><span class="n">maxIter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">layers</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">blockSize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">mlp</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">layers</span>
+<span class="go">[2, 2, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">size</span>
+<span class="go">12</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">testDF</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">testDF</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="go">+---------+----------+</span>
+<span class="go">| features|prediction|</span>
+<span class="go">+---------+----------+</span>
+<span class="go">|[1.0,0.0]|       1.0|</span>
+<span class="go">|[0.0,0.0]|       0.0|</span>
+<span class="go">+---------+----------+</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlp_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/mlp&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlp</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mlp_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlp2</span> <span class="o">=</span> <span class="n">MultilayerPerceptronClassifier</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">mlp_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlp2</span><span class="o">.</span><span class="n">getBlockSize</span><span class="p">()</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/mlp_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">MultilayerPerceptronClassificationModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">layers</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">layers</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">weights</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">weights</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlp2</span> <span class="o">=</span> <span class="n">mlp2</span><span class="o">.</span><span class="n">setInitialWeights</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model3</span> <span class="o">=</span> <span class="n">mlp2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model3</span><span class="o">.</span><span class="n">weights</span> <span class="o">!=</span> <span class="n">model2</span><span class="o">.</span><span class="n">weights</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model3</span><span class="o">.</span><span class="n">layers</span> <span class="o">==</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.classification.MultilayerPerceptronClassifier.getBlockSize">
+<code class="descname">getBlockSize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1643-L1648"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.MultilayerPerceptronClassifier.getBlockSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of blockSize or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.MultilayerPerceptronClassifier.getInitialWeights">
+<code class="descname">getInitialWeights</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1671-L1676"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.MultilayerPerceptronClassifier.getInitialWeights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of initialWeights or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.MultilayerPerceptronClassifier.getLayers">
+<code class="descname">getLayers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1629-L1634"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.MultilayerPerceptronClassifier.getLayers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of layers or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.MultilayerPerceptronClassifier.getStepSize">
+<code class="descname">getStepSize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1657-L1662"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.MultilayerPerceptronClassifier.getStepSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of stepSize or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.MultilayerPerceptronClassifier.setBlockSize">
+<code class="descname">setBlockSize</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1636-L1641"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.MultilayerPerceptronClassifier.setBlockSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">blockSize</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.MultilayerPerceptronClassifier.setInitialWeights">
+<code class="descname">setInitialWeights</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1664-L1669"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.MultilayerPerceptronClassifier.setInitialWeights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">initialWeights</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.MultilayerPerceptronClassifier.setLayers">
+<code class="descname">setLayers</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1622-L1627"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.MultilayerPerceptronClassifier.setLayers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">layers</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.MultilayerPerceptronClassifier.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>maxIter=100</em>, <em>tol=1e-06</em>, <em>seed=None</em>, <em>layers=None</em>, <em>blockSize=128</em>, <em>stepSize=0.03</em>, <em>solver='l-bfgs'</em>, <em>initialWeights=None</em>, <em>probabilityCol='probability'</em>, <em>rawPredictionCol='rawPrediction'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L1603-L1617"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.MultilayerPerceptronClassifier.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>setParams(self, featuresCol=”features”, labelCol=”label”, predictionCol=”prediction”,                   maxIter=100, tol=1e-6, seed=None, layers=None, blockSize=128, stepSize=0.03,                   solver=”l-bfgs”, initialWeights=None, probabilityCol=”probability”,                   rawPredictionCol=”rawPrediction”):
+Sets params for MultilayerPerceptronClassifier.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.MultilayerPerceptronClassifier.setStepSize">
+<code class="descname">setStepSize</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1650-L1655"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.MultilayerPerceptronClassifier.setStepSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">stepSize</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.MultilayerPerceptronClassificationModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">MultilayerPerceptronClassificationModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1679-L1701"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.MultilayerPerceptronClassificationModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by MultilayerPerceptronClassifier.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.classification.MultilayerPerceptronClassificationModel.layers">
+<code class="descname">layers</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.MultilayerPerceptronClassificationModel.layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>array of layer sizes including input and output layers.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.classification.MultilayerPerceptronClassificationModel.weights">
+<code class="descname">weights</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.MultilayerPerceptronClassificationModel.weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>the weights of layers.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.OneVsRest">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">OneVsRest</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>classifier=None</em>, <em>weightCol=None</em>, <em>parallelism=1</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1729-L1935"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.OneVsRest" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Reduction of Multiclass Classification to Binary Classification.
+Performs reduction using one against all strategy.
+For a multiclass classification with k classes, train k models (one per class).
+Each example is scored against all k models and the model with highest score
+is picked to label the example.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="k">import</span> <span class="n">Row</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data_path</span> <span class="o">=</span> <span class="s2">&quot;data/mllib/sample_multiclass_classification_data.txt&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;libsvm&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">regParam</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ovr</span> <span class="o">=</span> <span class="n">OneVsRest</span><span class="p">(</span><span class="n">classifier</span><span class="o">=</span><span class="n">lr</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">ovr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">coefficients</span>
+<span class="go">DenseVector([0.5..., -1.0..., 3.4..., 4.2...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">coefficients</span>
+<span class="go">DenseVector([-2.1..., 3.1..., -2.6..., -2.3...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">coefficients</span>
+<span class="go">DenseVector([0.3..., -3.4..., 1.0..., -1.1...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">intercept</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">models</span><span class="p">]</span>
+<span class="go">[-2.7..., -2.5..., -1.3...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test0</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="n">Row</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test1</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="n">Row</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">2.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test2</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="n">Row</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test2</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/ovr_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">OneVsRestModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">0.0</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.classification.OneVsRest.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><em>extra=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1845-L1860"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.OneVsRest.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a copy of this instance with a randomly generated uid
+and some extra params. This creates a deep copy of the embedded paramMap,
+and copies the embedded and extra parameters over.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>extra</strong> – Extra parameters to copy to the new instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Copy of this instance</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.classification.OneVsRest.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>classifier=None</em>, <em>weightCol=None</em>, <em>parallelism=1</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L1784-L1794"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.OneVsRest.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>setParams(self, featuresCol=”features”, labelCol=”label”, predictionCol=”prediction”,                   classifier=None, weightCol=None, parallelism=1):
+Sets params for OneVsRest.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.classification.OneVsRestModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.classification.</code><code class="descname">OneVsRestModel</code><span class="sig-paren">(</span><em>models</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L1938-L2060"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.OneVsRestModel" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Model fitted by OneVsRest.
+This stores the models resulting from training k binary classifiers: one for each class.
+Each example is scored against all k models, and the model with the highest score
+is picked to label the example.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.classification.OneVsRestModel.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><em>extra=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/classification.py#L2011-L2025"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.classification.OneVsRestModel.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a copy of this instance with a randomly generated uid
+and some extra params. This creates a deep copy of the embedded paramMap,
+and copies the embedded and extra parameters over.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>extra</strong> – Extra parameters to copy to the new instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Copy of this instance</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="clusteringAPI.html" class="btn btn-neutral float-right" title="5. Clustering API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="regressionAPI.html" class="btn btn-neutral float-left" title="3. Regression API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Wenqiang Feng
+      <span class="lastupdated">
+        Last updated on Mar 19, 2019.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

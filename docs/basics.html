@@ -1,0 +1,1724 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Regression &mdash; PySpark API 1.00 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/icon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fix_rtd.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PySpark API
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regressionAPI.html">2. Regression API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classificationAPI.html">3. Classification API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clusteringAPI.html">4. Clustering API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">5. Main Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PySpark API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Regression</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/runawayhorse001/statspy/blob/master/doc/basics.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="regression">
+<span id="id1"></span><h1>Regression<a class="headerlink" href="#regression" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-pyspark.ml.regression"></span><dl class="class">
+<dt id="pyspark.ml.regression.AFTSurvivalRegression">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">AFTSurvivalRegression</code><span class="sig-paren">(</span><em>featuresCol='features', labelCol='label', predictionCol='prediction', fitIntercept=True, maxIter=100, tol=1e-06, censorCol='censor', quantileProbabilities=[0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.99], quantilesCol=None, aggregationDepth=2</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1205-L1346"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegression" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Accelerated Failure Time (AFT) Model Survival Regression</p>
+<p>Fit a parametric AFT survival regression model based on the Weibull distribution
+of the survival time.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="https://en.wikipedia.org/wiki/Accelerated_failure_time_model">AFT Model</a></p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1e-40</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[]),</span> <span class="mf">0.0</span><span class="p">)],</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="s2">&quot;censor&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aftsr</span> <span class="o">=</span> <span class="n">AFTSurvivalRegression</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">aftsr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">6.3</span><span class="p">))</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">predictQuantiles</span><span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">6.3</span><span class="p">))</span>
+<span class="go">DenseVector([0.0101, 0.0513, 0.1054, 0.2877, 0.6931, 1.3863, 2.3026, 2.9957, 4.6052])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="go">+-------+---------+------+----------+</span>
+<span class="go">|  label| features|censor|prediction|</span>
+<span class="go">+-------+---------+------+----------+</span>
+<span class="go">|    1.0|    [1.0]|   1.0|       1.0|</span>
+<span class="go">|1.0E-40|(1,[],[])|   0.0|       1.0|</span>
+<span class="go">+-------+---------+------+----------+</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aftsr_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/aftsr&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aftsr</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">aftsr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aftsr2</span> <span class="o">=</span> <span class="n">AFTSurvivalRegression</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">aftsr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aftsr2</span><span class="o">.</span><span class="n">getMaxIter</span><span class="p">()</span>
+<span class="go">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/aftsr_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">AFTSurvivalRegressionModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">coefficients</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">coefficients</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">intercept</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">intercept</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">scale</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">scale</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.regression.AFTSurvivalRegression.getCensorCol">
+<code class="descname">getCensorCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1313-L1318"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegression.getCensorCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of censorCol or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.AFTSurvivalRegression.getQuantileProbabilities">
+<code class="descname">getQuantileProbabilities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1327-L1332"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegression.getQuantileProbabilities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of quantileProbabilities or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.AFTSurvivalRegression.getQuantilesCol">
+<code class="descname">getQuantilesCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1341-L1346"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegression.getQuantilesCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of quantilesCol or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.AFTSurvivalRegression.setCensorCol">
+<code class="descname">setCensorCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1306-L1311"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegression.setCensorCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">censorCol</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.AFTSurvivalRegression.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>featuresCol='features', labelCol='label', predictionCol='prediction', fitIntercept=True, maxIter=100, tol=1e-06, censorCol='censor', quantileProbabilities=[0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.99], quantilesCol=None, aggregationDepth=2</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L1288-L1301"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegression.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>setParams(self, featuresCol=”features”, labelCol=”label”, predictionCol=”prediction”,                   fitIntercept=True, maxIter=100, tol=1E-6, censorCol=”censor”,                   quantileProbabilities=[0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.99],                   quantilesCol=None, aggregationDepth=2):</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.AFTSurvivalRegression.setQuantileProbabilities">
+<code class="descname">setQuantileProbabilities</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1320-L1325"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegression.setQuantileProbabilities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">quantileProbabilities</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.AFTSurvivalRegression.setQuantilesCol">
+<code class="descname">setQuantilesCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1334-L1339"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegression.setQuantilesCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">quantilesCol</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.AFTSurvivalRegressionModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">AFTSurvivalRegressionModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1349-L1394"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegressionModel" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Model fitted by <a class="reference internal" href="regressionAPI.html#pyspark.ml.regression.AFTSurvivalRegression" title="pyspark.ml.regression.AFTSurvivalRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">AFTSurvivalRegression</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.regression.AFTSurvivalRegressionModel.coefficients">
+<code class="descname">coefficients</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegressionModel.coefficients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model coefficients.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.AFTSurvivalRegressionModel.intercept">
+<code class="descname">intercept</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegressionModel.intercept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model intercept.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.AFTSurvivalRegressionModel.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>features</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1389-L1394"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegressionModel.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predicted value</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.AFTSurvivalRegressionModel.predictQuantiles">
+<code class="descname">predictQuantiles</code><span class="sig-paren">(</span><em>features</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1382-L1387"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegressionModel.predictQuantiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predicted Quantiles</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.AFTSurvivalRegressionModel.scale">
+<code class="descname">scale</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.AFTSurvivalRegressionModel.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model scale parameter.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.DecisionTreeRegressor">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">DecisionTreeRegressor</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>maxDepth=5</em>, <em>maxBins=32</em>, <em>minInstancesPerNode=1</em>, <em>minInfoGain=0.0</em>, <em>maxMemoryInMB=256</em>, <em>cacheNodeIds=False</em>, <em>checkpointInterval=10</em>, <em>impurity='variance'</em>, <em>seed=None</em>, <em>varianceCol=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L716-L799"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.DecisionTreeRegressor" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="http://en.wikipedia.org/wiki/Decision_tree_learning">Decision tree</a>
+learning algorithm for regression.
+It supports both continuous and categorical features.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[]))],</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">maxDepth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">varianceCol</span><span class="o">=</span><span class="s2">&quot;variance&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">depth</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">numNodes</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">featureImportances</span>
+<span class="go">SparseVector(1, {0: 1.0})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">numFeatures</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test0</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test1</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dtr_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/dtr&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">dtr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dt2</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dtr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dt2</span><span class="o">.</span><span class="n">getMaxDepth</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/dtr_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">DecisionTreeRegressionModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">numNodes</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">numNodes</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">depth</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">depth</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">variance</span>
+<span class="go">0.0</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.regression.DecisionTreeRegressor.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>featuresCol=&quot;features&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>maxDepth=5</em>, <em>maxBins=32</em>, <em>minInstancesPerNode=1</em>, <em>minInfoGain=0.0</em>, <em>maxMemoryInMB=256</em>, <em>cacheNodeIds=False</em>, <em>checkpointInterval=10</em>, <em>impurity=&quot;variance&quot;</em>, <em>seed=None</em>, <em>varianceCol=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L782-L796"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.DecisionTreeRegressor.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for the DecisionTreeRegressor.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.DecisionTreeRegressionModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">DecisionTreeRegressionModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L875-L901"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.DecisionTreeRegressionModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by <a class="reference internal" href="regressionAPI.html#pyspark.ml.regression.DecisionTreeRegressor" title="pyspark.ml.regression.DecisionTreeRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeRegressor</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.regression.DecisionTreeRegressionModel.featureImportances">
+<code class="descname">featureImportances</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.DecisionTreeRegressionModel.featureImportances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate of the importance of each feature.</p>
+<p>This generalizes the idea of “Gini” importance to other losses,
+following the explanation of Gini importance from “Random Forests” documentation
+by Leo Breiman and Adele Cutler, and following the implementation from scikit-learn.</p>
+<dl class="docutils">
+<dt>This feature importance is calculated as follows:</dt>
+<dd><ul class="first last simple">
+<li>importance(feature j) = sum (over nodes which split on feature j) of the gain,
+where gain is scaled by the number of instances passing through node</li>
+<li>Normalize importances for tree to sum to 1.</li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Feature importance for single decision trees can have high variance due to
+correlated predictor variables. Consider using a <a class="reference internal" href="regressionAPI.html#pyspark.ml.regression.RandomForestRegressor" title="pyspark.ml.regression.RandomForestRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomForestRegressor</span></code></a>
+to determine feature importance instead.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.GBTRegressor">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">GBTRegressor</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>maxDepth=5</em>, <em>maxBins=32</em>, <em>minInstancesPerNode=1</em>, <em>minInfoGain=0.0</em>, <em>maxMemoryInMB=256</em>, <em>cacheNodeIds=False</em>, <em>subsamplingRate=1.0</em>, <em>checkpointInterval=10</em>, <em>lossType='squared'</em>, <em>maxIter=20</em>, <em>stepSize=0.1</em>, <em>seed=None</em>, <em>impurity='variance'</em>, <em>featureSubsetStrategy='all'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1033-L1158"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GBTRegressor" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="http://en.wikipedia.org/wiki/Gradient_boosting">Gradient-Boosted Trees (GBTs)</a>
+learning algorithm for regression.
+It supports both continuous and categorical features.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">allclose</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[]))],</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gbt</span> <span class="o">=</span> <span class="n">GBTRegressor</span><span class="p">(</span><span class="n">maxIter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">maxDepth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gbt</span><span class="o">.</span><span class="n">getImpurity</span><span class="p">())</span>
+<span class="go">variance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gbt</span><span class="o">.</span><span class="n">getFeatureSubsetStrategy</span><span class="p">())</span>
+<span class="go">all</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">gbt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">featureImportances</span>
+<span class="go">SparseVector(1, {0: 1.0})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">numFeatures</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">allclose</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">treeWeights</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test0</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test1</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gbtr_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;gbtr&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gbt</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">gbtr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gbt2</span> <span class="o">=</span> <span class="n">GBTRegressor</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">gbtr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gbt2</span><span class="o">.</span><span class="n">getMaxDepth</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;gbtr_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">GBTRegressionModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">featureImportances</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">featureImportances</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">treeWeights</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">treeWeights</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">trees</span>
+<span class="go">[DecisionTreeRegressionModel (uid=...) of depth..., DecisionTreeRegressionModel...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">validation</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">))],</span>
+<span class="gp">... </span>             <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">evaluateEachIteration</span><span class="p">(</span><span class="n">validation</span><span class="p">,</span> <span class="s2">&quot;squared&quot;</span><span class="p">)</span>
+<span class="go">[0.0, 0.0, 0.0, 0.0, 0.0]</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.regression.GBTRegressor.getLossType">
+<code class="descname">getLossType</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1146-L1151"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GBTRegressor.getLossType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of lossType or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GBTRegressor.setFeatureSubsetStrategy">
+<code class="descname">setFeatureSubsetStrategy</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1153-L1158"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GBTRegressor.setFeatureSubsetStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">featureSubsetStrategy</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GBTRegressor.setLossType">
+<code class="descname">setLossType</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1139-L1144"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GBTRegressor.setLossType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">lossType</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GBTRegressor.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>featuresCol=&quot;features&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>maxDepth=5</em>, <em>maxBins=32</em>, <em>minInstancesPerNode=1</em>, <em>minInfoGain=0.0</em>, <em>maxMemoryInMB=256</em>, <em>cacheNodeIds=False</em>, <em>subsamplingRate=1.0</em>, <em>checkpointInterval=10</em>, <em>lossType=&quot;squared&quot;</em>, <em>maxIter=20</em>, <em>stepSize=0.1</em>, <em>seed=None</em>, <em>impurity=&quot;variance&quot;</em>, <em>featureSubsetStrategy=&quot;all&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L1118-L1134"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GBTRegressor.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for Gradient Boosted Tree Regression.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.GBTRegressionModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">GBTRegressionModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1161-L1201"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GBTRegressionModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by <a class="reference internal" href="regressionAPI.html#pyspark.ml.regression.GBTRegressor" title="pyspark.ml.regression.GBTRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">GBTRegressor</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.regression.GBTRegressionModel.evaluateEachIteration">
+<code class="descname">evaluateEachIteration</code><span class="sig-paren">(</span><em>dataset</em>, <em>loss</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1189-L1201"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GBTRegressionModel.evaluateEachIteration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to compute error or loss for every iteration of gradient boosting.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dataset</strong> – Test dataset to evaluate model on, where dataset is an
+instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">pyspark.sql.DataFrame</span></code></li>
+<li><strong>loss</strong> – The loss function used to compute error.
+Supported options: squared, absolute</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GBTRegressionModel.featureImportances">
+<code class="descname">featureImportances</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GBTRegressionModel.featureImportances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate of the importance of each feature.</p>
+<p>Each feature’s importance is the average of its importance across all trees in the ensemble
+The importance vector is normalized to sum to 1. This method is suggested by Hastie et al.
+(Hastie, Tibshirani, Friedman. “The Elements of Statistical Learning, 2nd Edition.” 2001.)
+and follows the implementation from scikit-learn.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="regressionAPI.html#pyspark.ml.regression.DecisionTreeRegressionModel.featureImportances" title="pyspark.ml.regression.DecisionTreeRegressionModel.featureImportances"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DecisionTreeRegressionModel.featureImportances</span></code></a></p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GBTRegressionModel.trees">
+<code class="descname">trees</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GBTRegressionModel.trees" title="Permalink to this definition">¶</a></dt>
+<dd><p>These have null parent Estimators.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Trees in this ensemble. Warning</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">GeneralizedLinearRegression</code><span class="sig-paren">(</span><em>labelCol='label'</em>, <em>featuresCol='features'</em>, <em>predictionCol='prediction'</em>, <em>family='gaussian'</em>, <em>link=None</em>, <em>fitIntercept=True</em>, <em>maxIter=25</em>, <em>tol=1e-06</em>, <em>regParam=0.0</em>, <em>weightCol=None</em>, <em>solver='irls'</em>, <em>linkPredictionCol=None</em>, <em>variancePower=0.0</em>, <em>linkPower=None</em>, <em>offsetCol=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1398-L1604"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Generalized Linear Regression.</p>
+<p>Fit a Generalized Linear Model specified by giving a symbolic description of the linear
+predictor (link function) and a description of the error distribution (family). It supports
+“gaussian”, “binomial”, “poisson”, “gamma” and “tweedie” as family. Valid link functions for
+each family is listed below. The first link function of each family is the default one.</p>
+<ul class="simple">
+<li>“gaussian” -&gt; “identity”, “log”, “inverse”</li>
+<li>“binomial” -&gt; “logit”, “probit”, “cloglog”</li>
+<li>“poisson”  -&gt; “log”, “identity”, “sqrt”</li>
+<li>“gamma”    -&gt; “inverse”, “identity”, “log”</li>
+<li>“tweedie”  -&gt; power link function specified through “linkPower”.                     The default link power in the tweedie family is 1 - variancePower.</li>
+</ul>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="https://en.wikipedia.org/wiki/Generalized_linear_model">GLM</a></p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)),],</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glr</span> <span class="o">=</span> <span class="n">GeneralizedLinearRegression</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">,</span> <span class="n">link</span><span class="o">=</span><span class="s2">&quot;identity&quot;</span><span class="p">,</span> <span class="n">linkPredictionCol</span><span class="o">=</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">glr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transformed</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">transformed</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span> <span class="o">-</span> <span class="mf">1.5</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">transformed</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">p</span> <span class="o">-</span> <span class="mf">1.5</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">coefficients</span>
+<span class="go">DenseVector([1.5..., -1.0...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">numFeatures</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">intercept</span> <span class="o">-</span> <span class="mf">1.5</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glr_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/glr&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glr</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">glr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glr2</span> <span class="o">=</span> <span class="n">GeneralizedLinearRegression</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">glr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glr</span><span class="o">.</span><span class="n">getFamily</span><span class="p">()</span> <span class="o">==</span> <span class="n">glr2</span><span class="o">.</span><span class="n">getFamily</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/glr_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">GeneralizedLinearRegressionModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">intercept</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">intercept</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression.getFamily">
+<code class="descname">getFamily</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1529-L1534"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression.getFamily" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of family or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression.getLink">
+<code class="descname">getLink</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1557-L1562"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression.getLink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of link or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression.getLinkPower">
+<code class="descname">getLinkPower</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1585-L1590"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression.getLinkPower" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of linkPower or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression.getLinkPredictionCol">
+<code class="descname">getLinkPredictionCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1543-L1548"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression.getLinkPredictionCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of linkPredictionCol or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression.getOffsetCol">
+<code class="descname">getOffsetCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1599-L1604"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression.getOffsetCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of offsetCol or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression.getVariancePower">
+<code class="descname">getVariancePower</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1571-L1576"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression.getVariancePower" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of variancePower or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression.setFamily">
+<code class="descname">setFamily</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1522-L1527"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression.setFamily" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">family</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression.setLink">
+<code class="descname">setLink</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1550-L1555"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression.setLink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">link</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression.setLinkPower">
+<code class="descname">setLinkPower</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1578-L1583"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression.setLinkPower" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">linkPower</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression.setLinkPredictionCol">
+<code class="descname">setLinkPredictionCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1536-L1541"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression.setLinkPredictionCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">linkPredictionCol</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression.setOffsetCol">
+<code class="descname">setOffsetCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1592-L1597"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression.setOffsetCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">offsetCol</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>labelCol=&quot;label&quot;</em>, <em>featuresCol=&quot;features&quot;</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>family=&quot;gaussian&quot;</em>, <em>link=None</em>, <em>fitIntercept=True</em>, <em>maxIter=25</em>, <em>tol=1e-6</em>, <em>regParam=0.0</em>, <em>weightCol=None</em>, <em>solver=&quot;irls&quot;</em>, <em>linkPredictionCol=None</em>, <em>variancePower=0.0</em>, <em>linkPower=None</em>, <em>offsetCol=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L1503-L1517"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for generalized linear regression.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegression.setVariancePower">
+<code class="descname">setVariancePower</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1564-L1569"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegression.setVariancePower" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">variancePower</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">GeneralizedLinearRegressionModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1607-L1669"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionModel" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Model fitted by <a class="reference internal" href="regressionAPI.html#pyspark.ml.regression.GeneralizedLinearRegression" title="pyspark.ml.regression.GeneralizedLinearRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneralizedLinearRegression</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionModel.coefficients">
+<code class="descname">coefficients</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionModel.coefficients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model coefficients.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionModel.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1657-L1669"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionModel.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the model on a test dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dataset</strong> – Test dataset to evaluate model on, where dataset is an
+instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">pyspark.sql.DataFrame</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionModel.hasSummary">
+<code class="descname">hasSummary</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionModel.hasSummary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates whether a training summary exists for this model
+instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionModel.intercept">
+<code class="descname">intercept</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionModel.intercept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model intercept.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionModel.summary">
+<code class="descname">summary</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionModel.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets summary (e.g. residuals, deviance, pValues) of model on
+training set. An exception is thrown if
+<img class="math" src="_images/math/134f6ca3d75afe3f2e3213867e8a4a507a1c1db7.png" alt="trainingSummary is None"/>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionSummary">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">GeneralizedLinearRegressionSummary</code><span class="sig-paren">(</span><em>java_obj=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1672-L1781"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionSummary" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Generalized linear regression results evaluated on a dataset.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionSummary.aic">
+<code class="descname">aic</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionSummary.aic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Akaike’s “An Information Criterion”(AIC) for the fitted model.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionSummary.degreesOfFreedom">
+<code class="descname">degreesOfFreedom</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionSummary.degreesOfFreedom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Degrees of freedom.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionSummary.deviance">
+<code class="descname">deviance</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionSummary.deviance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The deviance for the fitted model.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionSummary.dispersion">
+<code class="descname">dispersion</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionSummary.dispersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>The dispersion of the fitted model.
+It is taken as 1.0 for the “binomial” and “poisson” families, and otherwise
+estimated by the residual Pearson’s Chi-Squared statistic (which is defined as
+sum of the squares of the Pearson residuals) divided by the residual degrees of freedom.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionSummary.nullDeviance">
+<code class="descname">nullDeviance</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionSummary.nullDeviance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The deviance for the null model.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionSummary.numInstances">
+<code class="descname">numInstances</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionSummary.numInstances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of instances in DataFrame predictions.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionSummary.predictionCol">
+<code class="descname">predictionCol</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionSummary.predictionCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Field in <a class="reference internal" href="regressionAPI.html#pyspark.ml.regression.GeneralizedLinearRegressionSummary.predictions" title="pyspark.ml.regression.GeneralizedLinearRegressionSummary.predictions"><code class="xref py py-attr docutils literal notranslate"><span class="pre">predictions</span></code></a> which gives the predicted value of each instance.
+This is set to a new column name if the original model’s <img class="math" src="_images/math/db72cce9b899b978cbe733ba6a768fec9f8071ba.png" alt="predictionCol"/> is not set.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionSummary.predictions">
+<code class="descname">predictions</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionSummary.predictions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predictions output by the model’s <img class="math" src="_images/math/d74f393118afb100c339b1eb26b681a55360415a.png" alt="transform"/> method.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionSummary.rank">
+<code class="descname">rank</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionSummary.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>The numeric rank of the fitted linear model.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionSummary.residualDegreeOfFreedom">
+<code class="descname">residualDegreeOfFreedom</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionSummary.residualDegreeOfFreedom" title="Permalink to this definition">¶</a></dt>
+<dd><p>The residual degrees of freedom.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionSummary.residualDegreeOfFreedomNull">
+<code class="descname">residualDegreeOfFreedomNull</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionSummary.residualDegreeOfFreedomNull" title="Permalink to this definition">¶</a></dt>
+<dd><p>The residual degrees of freedom for the null model.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionSummary.residuals">
+<code class="descname">residuals</code><span class="sig-paren">(</span><em>residualsType='deviance'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1738-L1746"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionSummary.residuals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the residuals of the fitted model by type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>residualsType</strong> – The type of residuals which should be returned.
+Supported options: deviance (default), pearson, working, and response.</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionTrainingSummary">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">GeneralizedLinearRegressionTrainingSummary</code><span class="sig-paren">(</span><em>java_obj=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1785-L1844"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionTrainingSummary" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Generalized linear regression training results.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionTrainingSummary.coefficientStandardErrors">
+<code class="descname">coefficientStandardErrors</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionTrainingSummary.coefficientStandardErrors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standard error of estimated coefficients and intercept.</p>
+<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">GeneralizedLinearRegression.fitIntercept</span></code> is set to True,
+then the last element returned corresponds to the intercept.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionTrainingSummary.numIterations">
+<code class="descname">numIterations</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionTrainingSummary.numIterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of training iterations.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionTrainingSummary.pValues">
+<code class="descname">pValues</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionTrainingSummary.pValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two-sided p-value of estimated coefficients and intercept.</p>
+<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">GeneralizedLinearRegression.fitIntercept</span></code> is set to True,
+then the last element returned corresponds to the intercept.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionTrainingSummary.solver">
+<code class="descname">solver</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionTrainingSummary.solver" title="Permalink to this definition">¶</a></dt>
+<dd><p>The numeric solver used for training.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.GeneralizedLinearRegressionTrainingSummary.tValues">
+<code class="descname">tValues</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.GeneralizedLinearRegressionTrainingSummary.tValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>T-statistic of estimated coefficients and intercept.</p>
+<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">GeneralizedLinearRegression.fitIntercept</span></code> is set to True,
+then the last element returned corresponds to the intercept.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.IsotonicRegression">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">IsotonicRegression</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>weightCol=None</em>, <em>isotonic=True</em>, <em>featureIndex=0</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L477-L569"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.IsotonicRegression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Currently implemented using parallelized pool adjacent violators algorithm.
+Only univariate (single feature) algorithm supported.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[]))],</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ir</span> <span class="o">=</span> <span class="n">IsotonicRegression</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test0</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">boundaries</span>
+<span class="go">DenseVector([0.0, 1.0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ir_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/ir&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ir</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">ir_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ir2</span> <span class="o">=</span> <span class="n">IsotonicRegression</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">ir_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ir2</span><span class="o">.</span><span class="n">getIsotonic</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/ir_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">IsotonicRegressionModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">boundaries</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">boundaries</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">predictions</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">predictions</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.regression.IsotonicRegression.getFeatureIndex">
+<code class="descname">getFeatureIndex</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L565-L569"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.IsotonicRegression.getFeatureIndex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of featureIndex or its default value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.IsotonicRegression.getIsotonic">
+<code class="descname">getIsotonic</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L553-L557"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.IsotonicRegression.getIsotonic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of isotonic or its default value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.IsotonicRegression.setFeatureIndex">
+<code class="descname">setFeatureIndex</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L559-L563"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.IsotonicRegression.setFeatureIndex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">featureIndex</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.IsotonicRegression.setIsotonic">
+<code class="descname">setIsotonic</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L547-L551"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.IsotonicRegression.setIsotonic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">isotonic</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.IsotonicRegression.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>weightCol=None</em>, <em>isotonic=True</em>, <em>featureIndex=0</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L533-L542"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.IsotonicRegression.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>setParams(self, featuresCol=”features”, labelCol=”label”, predictionCol=”prediction”,                  weightCol=None, isotonic=True, featureIndex=0):
+Set the params for IsotonicRegression.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.IsotonicRegressionModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">IsotonicRegressionModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L572-L594"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.IsotonicRegressionModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by <a class="reference internal" href="regressionAPI.html#pyspark.ml.regression.IsotonicRegression" title="pyspark.ml.regression.IsotonicRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">IsotonicRegression</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.regression.IsotonicRegressionModel.boundaries">
+<code class="descname">boundaries</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.IsotonicRegressionModel.boundaries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boundaries in increasing order for which predictions are known.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.IsotonicRegressionModel.predictions">
+<code class="descname">predictions</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.IsotonicRegressionModel.predictions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predictions associated with the boundaries at the same index, monotone because of isotonic
+regression.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.6.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.LinearRegression">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">LinearRegression</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>maxIter=100</em>, <em>regParam=0.0</em>, <em>elasticNetParam=0.0</em>, <em>tol=1e-06</em>, <em>fitIntercept=True</em>, <em>standardization=True</em>, <em>solver='auto'</em>, <em>weightCol=None</em>, <em>aggregationDepth=2</em>, <em>loss='squaredError'</em>, <em>epsilon=1.35</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L41-L162"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linear regression.</p>
+<p>The learning objective is to minimize the specified loss function, with regularization.
+This supports two kinds of loss:</p>
+<ul class="simple">
+<li>squaredError (a.k.a squared loss)</li>
+<li>huber (a hybrid of squared error for relatively small errors and absolute error for     relatively large ones, and we estimate the scale parameter from training data)</li>
+</ul>
+<p>This supports multiple types of regularization:</p>
+<ul class="simple">
+<li>none (a.k.a. ordinary least squares)</li>
+<li>L2 (ridge regression)</li>
+<li>L1 (Lasso)</li>
+<li>L2 + L1 (elastic net)</li>
+</ul>
+<p>Note: Fitting with huber loss only supports none and L2 regularization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[]))],</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">maxIter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">regParam</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">weightCol</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test0</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">0.001</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">intercept</span> <span class="o">-</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test1</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s2">&quot;vector&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+    <span class="o">...</span>
+<span class="gr">TypeError</span>: <span class="n">Method setParams forces keyword arguments.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/lr&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">lr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr2</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">lr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr2</span><span class="o">.</span><span class="n">getMaxIter</span><span class="p">()</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/lr_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">LinearRegressionModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">intercept</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">intercept</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">numFeatures</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">write</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;pmml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span> <span class="o">+</span> <span class="s2">&quot;_2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.regression.LinearRegression.getEpsilon">
+<code class="descname">getEpsilon</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L157-L162"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegression.getEpsilon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of epsilon or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.LinearRegression.setEpsilon">
+<code class="descname">setEpsilon</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L150-L155"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegression.setEpsilon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">epsilon</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.LinearRegression.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>featuresCol=&quot;features&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>maxIter=100</em>, <em>regParam=0.0</em>, <em>elasticNetParam=0.0</em>, <em>tol=1e-6</em>, <em>fitIntercept=True</em>, <em>standardization=True</em>, <em>solver=&quot;auto&quot;</em>, <em>weightCol=None</em>, <em>aggregationDepth=2</em>, <em>loss=&quot;squaredError&quot;</em>, <em>epsilon=1.35</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L131-L145"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegression.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for linear regression.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.LinearRegressionModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">LinearRegressionModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L165-L232"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by <a class="reference internal" href="regressionAPI.html#pyspark.ml.regression.LinearRegression" title="pyspark.ml.regression.LinearRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRegression</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionModel.coefficients">
+<code class="descname">coefficients</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionModel.coefficients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model coefficients.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.LinearRegressionModel.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L220-L232"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionModel.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the model on a test dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dataset</strong> – Test dataset to evaluate model on, where dataset is an
+instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">pyspark.sql.DataFrame</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionModel.hasSummary">
+<code class="descname">hasSummary</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionModel.hasSummary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates whether a training summary exists for this model
+instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionModel.intercept">
+<code class="descname">intercept</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionModel.intercept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model intercept.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionModel.scale">
+<code class="descname">scale</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionModel.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>The value by which <img class="math" src="_images/math/ba04bf71850c01bebd84de923d50f0a970f2eaec.png" alt="\|y - X'w\|"/> is scaled down when loss is “huber”, otherwise 1.0.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionModel.summary">
+<code class="descname">summary</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionModel.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets summary (e.g. residuals, mse, r-squared ) of model on
+training set. An exception is thrown if
+<img class="math" src="_images/math/134f6ca3d75afe3f2e3213867e8a4a507a1c1db7.png" alt="trainingSummary is None"/>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.LinearRegressionSummary">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">LinearRegressionSummary</code><span class="sig-paren">(</span><em>java_obj=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L235-L438"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Linear regression results evaluated on a dataset.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.coefficientStandardErrors">
+<code class="descname">coefficientStandardErrors</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.coefficientStandardErrors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standard error of estimated coefficients and intercept.
+This value is only available when using the “normal” solver.</p>
+<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">LinearRegression.fitIntercept</span></code> is set to True,
+then the last element returned corresponds to the intercept.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-attr docutils literal notranslate"><span class="pre">LinearRegression.solver</span></code></p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.degreesOfFreedom">
+<code class="descname">degreesOfFreedom</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.degreesOfFreedom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Degrees of freedom.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.devianceResiduals">
+<code class="descname">devianceResiduals</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.devianceResiduals" title="Permalink to this definition">¶</a></dt>
+<dd><p>The weighted residuals, the usual residuals rescaled by the
+square root of the instance weights.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.explainedVariance">
+<code class="descname">explainedVariance</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.explainedVariance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the explained variance regression score.
+explainedVariance = <img class="math" src="_images/math/1464f71c13c407b485eaa6b4b96bc9fcd50fb67a.png" alt="1 - \frac{variance(y - \hat{y})}{variance(y)}"/></p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Explained_variation">Wikipedia explain variation</a></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This ignores instance weights (setting all to 1.0) from
+<img class="math" src="_images/math/718b5b2c43d079217a88e765df622f413dc070d7.png" alt="LinearRegression.weightCol"/>. This will change in later Spark
+versions.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.featuresCol">
+<code class="descname">featuresCol</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.featuresCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Field in “predictions” which gives the features of each instance
+as a vector.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.labelCol">
+<code class="descname">labelCol</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.labelCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Field in “predictions” which gives the true label of each
+instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.meanAbsoluteError">
+<code class="descname">meanAbsoluteError</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.meanAbsoluteError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the mean absolute error, which is a risk function
+corresponding to the expected value of the absolute error
+loss or l1-norm loss.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This ignores instance weights (setting all to 1.0) from
+<img class="math" src="_images/math/718b5b2c43d079217a88e765df622f413dc070d7.png" alt="LinearRegression.weightCol"/>. This will change in later Spark
+versions.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.meanSquaredError">
+<code class="descname">meanSquaredError</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.meanSquaredError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the mean squared error, which is a risk function
+corresponding to the expected value of the squared error
+loss or quadratic loss.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This ignores instance weights (setting all to 1.0) from
+<img class="math" src="_images/math/718b5b2c43d079217a88e765df622f413dc070d7.png" alt="LinearRegression.weightCol"/>. This will change in later Spark
+versions.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.numInstances">
+<code class="descname">numInstances</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.numInstances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of instances in DataFrame predictions</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.pValues">
+<code class="descname">pValues</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.pValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two-sided p-value of estimated coefficients and intercept.
+This value is only available when using the “normal” solver.</p>
+<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">LinearRegression.fitIntercept</span></code> is set to True,
+then the last element returned corresponds to the intercept.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-attr docutils literal notranslate"><span class="pre">LinearRegression.solver</span></code></p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.predictionCol">
+<code class="descname">predictionCol</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.predictionCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Field in “predictions” which gives the predicted value of
+the label at each instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.predictions">
+<code class="descname">predictions</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.predictions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dataframe outputted by the model’s <img class="math" src="_images/math/d74f393118afb100c339b1eb26b681a55360415a.png" alt="transform"/> method.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.r2">
+<code class="descname">r2</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.r2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns R^2, the coefficient of determination.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Coefficient_of_determination">Wikipedia coefficient of determination</a></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This ignores instance weights (setting all to 1.0) from
+<img class="math" src="_images/math/718b5b2c43d079217a88e765df622f413dc070d7.png" alt="LinearRegression.weightCol"/>. This will change in later Spark
+versions.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.r2adj">
+<code class="descname">r2adj</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.r2adj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Adjusted R^2, the adjusted coefficient of determination.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="https://en.wikipedia.org/wiki/Coefficient_of_determination#Adjusted_R2">Wikipedia coefficient of determination, Adjusted R^2</a></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This ignores instance weights (setting all to 1.0) from
+<img class="math" src="_images/math/718b5b2c43d079217a88e765df622f413dc070d7.png" alt="LinearRegression.weightCol"/>. This will change in later Spark versions.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.residuals">
+<code class="descname">residuals</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.residuals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Residuals (label - predicted value)</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.rootMeanSquaredError">
+<code class="descname">rootMeanSquaredError</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.rootMeanSquaredError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the root mean squared error, which is defined as the
+square root of the mean squared error.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This ignores instance weights (setting all to 1.0) from
+<img class="math" src="_images/math/718b5b2c43d079217a88e765df622f413dc070d7.png" alt="LinearRegression.weightCol"/>. This will change in later Spark
+versions.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionSummary.tValues">
+<code class="descname">tValues</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionSummary.tValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>T-statistic of estimated coefficients and intercept.
+This value is only available when using the “normal” solver.</p>
+<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">LinearRegression.fitIntercept</span></code> is set to True,
+then the last element returned corresponds to the intercept.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-attr docutils literal notranslate"><span class="pre">LinearRegression.solver</span></code></p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.LinearRegressionTrainingSummary">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">LinearRegressionTrainingSummary</code><span class="sig-paren">(</span><em>java_obj=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L442-L473"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionTrainingSummary" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Linear regression training results. Currently, the training summary ignores the
+training weights except for the objective trace.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionTrainingSummary.objectiveHistory">
+<code class="descname">objectiveHistory</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionTrainingSummary.objectiveHistory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Objective function (scaled loss + regularization) at each
+iteration.
+This value is only available when using the “l-bfgs” solver.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-attr docutils literal notranslate"><span class="pre">LinearRegression.solver</span></code></p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.LinearRegressionTrainingSummary.totalIterations">
+<code class="descname">totalIterations</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.LinearRegressionTrainingSummary.totalIterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of training iterations until termination.
+This value is only available when using the “l-bfgs” solver.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-attr docutils literal notranslate"><span class="pre">LinearRegression.solver</span></code></p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.RandomForestRegressor">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">RandomForestRegressor</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>labelCol='label'</em>, <em>predictionCol='prediction'</em>, <em>maxDepth=5</em>, <em>maxBins=32</em>, <em>minInstancesPerNode=1</em>, <em>minInfoGain=0.0</em>, <em>maxMemoryInMB=256</em>, <em>cacheNodeIds=False</em>, <em>checkpointInterval=10</em>, <em>impurity='variance'</em>, <em>subsamplingRate=1.0</em>, <em>seed=None</em>, <em>numTrees=20</em>, <em>featureSubsetStrategy='auto'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L905-L999"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.RandomForestRegressor" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="http://en.wikipedia.org/wiki/Random_forest">Random Forest</a>
+learning algorithm for regression.
+It supports both continuous and categorical features.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">allclose</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[]))],</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">numTrees</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">maxDepth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">featureImportances</span>
+<span class="go">SparseVector(1, {0: 1.0})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">allclose</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">treeWeights</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test0</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">0.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">numFeatures</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">trees</span>
+<span class="go">[DecisionTreeRegressionModel (uid=...) of depth..., DecisionTreeRegressionModel...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">getNumTrees</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test1</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]),)],</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">0.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rfr_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/rfr&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rf</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">rfr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rf2</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">rfr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rf2</span><span class="o">.</span><span class="n">getNumTrees</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/rfr_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">RandomForestRegressionModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">featureImportances</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">featureImportances</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.regression.RandomForestRegressor.setFeatureSubsetStrategy">
+<code class="descname">setFeatureSubsetStrategy</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L994-L999"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.RandomForestRegressor.setFeatureSubsetStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">featureSubsetStrategy</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.regression.RandomForestRegressor.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>featuresCol=&quot;features&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>maxDepth=5</em>, <em>maxBins=32</em>, <em>minInstancesPerNode=1</em>, <em>minInfoGain=0.0</em>, <em>maxMemoryInMB=256</em>, <em>cacheNodeIds=False</em>, <em>checkpointInterval=10</em>, <em>impurity=&quot;variance&quot;</em>, <em>subsamplingRate=1.0</em>, <em>seed=None</em>, <em>numTrees=20</em>, <em>featureSubsetStrategy=&quot;auto&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L973-L989"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.RandomForestRegressor.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for linear regression.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.regression.RandomForestRegressionModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.regression.</code><code class="descname">RandomForestRegressionModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py#L1002-L1029"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.RandomForestRegressionModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by <a class="reference internal" href="regressionAPI.html#pyspark.ml.regression.RandomForestRegressor" title="pyspark.ml.regression.RandomForestRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomForestRegressor</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.regression.RandomForestRegressionModel.featureImportances">
+<code class="descname">featureImportances</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.RandomForestRegressionModel.featureImportances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate of the importance of each feature.</p>
+<p>Each feature’s importance is the average of its importance across all trees in the ensemble
+The importance vector is normalized to sum to 1. This method is suggested by Hastie et al.
+(Hastie, Tibshirani, Friedman. “The Elements of Statistical Learning, 2nd Edition.” 2001.)
+and follows the implementation from scikit-learn.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="regressionAPI.html#pyspark.ml.regression.DecisionTreeRegressionModel.featureImportances" title="pyspark.ml.regression.DecisionTreeRegressionModel.featureImportances"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DecisionTreeRegressionModel.featureImportances</span></code></a></p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.regression.RandomForestRegressionModel.trees">
+<code class="descname">trees</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/regression.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.regression.RandomForestRegressionModel.trees" title="Permalink to this definition">¶</a></dt>
+<dd><p>These have null parent Estimators.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Trees in this ensemble. Warning</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Wenqiang Feng
+      <span class="lastupdated">
+        Last updated on Mar 19, 2019.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

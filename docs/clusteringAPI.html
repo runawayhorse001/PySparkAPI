@@ -1,0 +1,1420 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. Clustering API &mdash; PySpark API 1.00 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/icon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fix_rtd.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Recommendation API" href="recommendationAPI.html" />
+    <link rel="prev" title="4. Classification API" href="classificationAPI.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PySpark API
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statAPI.html">2. Stat API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regressionAPI.html">3. Regression API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classificationAPI.html">4. Classification API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Clustering API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recommendationAPI.html">6. Recommendation API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipelineAPI.html">7. Pipeline API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuningAPI.html">8. Tuning API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluationAPI.html">9. Evaluation API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">10. Main Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PySpark API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5. Clustering API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/runawayhorse001/statspy/blob/master/doc/clusteringAPI.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyspark.ml.clustering">
+<span id="clustering-api"></span><span id="clusteringapi"></span><h1>5. Clustering API<a class="headerlink" href="#module-pyspark.ml.clustering" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pyspark.ml.clustering.BisectingKMeans">
+<em class="property">class </em><code class="descclassname">pyspark.ml.clustering.</code><code class="descname">BisectingKMeans</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>predictionCol='prediction'</em>, <em>maxIter=20</em>, <em>seed=None</em>, <em>k=4</em>, <em>minDivisibleClusterSize=1.0</em>, <em>distanceMeasure='euclidean'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L569-L701"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeans" title="Permalink to this definition">¶</a></dt>
+<dd><p>A bisecting k-means algorithm based on the paper “A comparison of document clustering
+techniques” by Steinbach, Karypis, and Kumar, with modification to fit Spark.
+The algorithm starts from a single cluster that contains all points.
+Iteratively it finds divisible clusters on the bottom level and bisects each of them using
+k-means, until there are <img class="math" src="_images/math/8688f09916f3356ebca98a1e7ba20da5752400c1.png" alt="k"/> leaf clusters in total or no leaf clusters are divisible.
+The bisecting steps of clusters on the same level are grouped together to increase parallelism.
+If bisecting all divisible clusters on the bottom level would result more than <img class="math" src="_images/math/8688f09916f3356ebca98a1e7ba20da5752400c1.png" alt="k"/> leaf
+clusters, larger clusters get higher priority.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),),</span> <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]),),</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">]),),</span> <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">]),)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bkm</span> <span class="o">=</span> <span class="n">BisectingKMeans</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">minDivisibleClusterSize</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">bkm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">centers</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">clusterCenters</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">centers</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">computeCost</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="go">2.000...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">hasSummary</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summary</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">summary</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summary</span><span class="o">.</span><span class="n">k</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summary</span><span class="o">.</span><span class="n">clusterSizes</span>
+<span class="go">[2, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transformed</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rows</span> <span class="o">=</span> <span class="n">transformed</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">prediction</span> <span class="o">==</span> <span class="n">rows</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rows</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">prediction</span> <span class="o">==</span> <span class="n">rows</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bkm_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/bkm&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bkm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">bkm_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bkm2</span> <span class="o">=</span> <span class="n">BisectingKMeans</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">bkm_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bkm2</span><span class="o">.</span><span class="n">getK</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bkm2</span><span class="o">.</span><span class="n">getDistanceMeasure</span><span class="p">()</span>
+<span class="go">&#39;euclidean&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/bkm_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">BisectingKMeansModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span><span class="o">.</span><span class="n">hasSummary</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">clusterCenters</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">clusterCenters</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">array([ True,  True], dtype=bool)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">clusterCenters</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">clusterCenters</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">array([ True,  True], dtype=bool)</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.clustering.BisectingKMeans.getDistanceMeasure">
+<code class="descname">getDistanceMeasure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L693-L698"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeans.getDistanceMeasure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <img class="math" src="_images/math/91d1f653b78d632bad83db02752aaf9971f068e3.png" alt="distanceMeasure"/> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.BisectingKMeans.getK">
+<code class="descname">getK</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L665-L670"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeans.getK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <img class="math" src="_images/math/8688f09916f3356ebca98a1e7ba20da5752400c1.png" alt="k"/> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.BisectingKMeans.getMinDivisibleClusterSize">
+<code class="descname">getMinDivisibleClusterSize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L679-L684"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeans.getMinDivisibleClusterSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <img class="math" src="_images/math/7ec5dd07d985ebc880f833df624925b6ddeae132.png" alt="minDivisibleClusterSize"/> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.BisectingKMeans.setDistanceMeasure">
+<code class="descname">setDistanceMeasure</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L686-L691"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeans.setDistanceMeasure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">distanceMeasure</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.BisectingKMeans.setK">
+<code class="descname">setK</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L658-L663"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeans.setK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">k</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.BisectingKMeans.setMinDivisibleClusterSize">
+<code class="descname">setMinDivisibleClusterSize</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L672-L677"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeans.setMinDivisibleClusterSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">minDivisibleClusterSize</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.BisectingKMeans.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>featuresCol=&quot;features&quot;</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>maxIter=20</em>, <em>seed=None</em>, <em>k=4</em>, <em>minDivisibleClusterSize=1.0</em>, <em>distanceMeasure=&quot;euclidean&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L646-L656"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeans.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for BisectingKMeans.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.clustering.BisectingKMeansModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.clustering.</code><code class="descname">BisectingKMeansModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L526-L565"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeansModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by BisectingKMeans.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.clustering.BisectingKMeansModel.clusterCenters">
+<code class="descname">clusterCenters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L533-L536"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeansModel.clusterCenters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the cluster centers, represented as a list of NumPy arrays.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.BisectingKMeansModel.computeCost">
+<code class="descname">computeCost</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L538-L544"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeansModel.computeCost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the sum of squared distances between the input points
+and their corresponding cluster centers.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.clustering.BisectingKMeansModel.hasSummary">
+<code class="descname">hasSummary</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeansModel.hasSummary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates whether a training summary exists for this model instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.clustering.BisectingKMeansModel.summary">
+<code class="descname">summary</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeansModel.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets summary (e.g. cluster assignments, cluster sizes) of the model trained on the
+training set. An exception is thrown if no summary exists.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.clustering.BisectingKMeansSummary">
+<em class="property">class </em><code class="descclassname">pyspark.ml.clustering.</code><code class="descname">BisectingKMeansSummary</code><span class="sig-paren">(</span><em>java_obj=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L704-L712"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.BisectingKMeansSummary" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Bisecting KMeans clustering results for a given model.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.clustering.KMeans">
+<em class="property">class </em><code class="descclassname">pyspark.ml.clustering.</code><code class="descname">KMeans</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>predictionCol='prediction'</em>, <em>k=2</em>, <em>initMode='k-means||'</em>, <em>initSteps=2</em>, <em>tol=0.0001</em>, <em>maxIter=20</em>, <em>seed=None</em>, <em>distanceMeasure='euclidean'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L375-L523"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeans" title="Permalink to this definition">¶</a></dt>
+<dd><p>K-means clustering with a k-means++ like initialization mode
+(the k-means|| algorithm by Bahmani et al).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),),</span> <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]),),</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">]),),</span> <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">]),)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">centers</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">clusterCenters</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">centers</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">computeCost</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="go">2.000...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transformed</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rows</span> <span class="o">=</span> <span class="n">transformed</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">prediction</span> <span class="o">==</span> <span class="n">rows</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rows</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">prediction</span> <span class="o">==</span> <span class="n">rows</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">hasSummary</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summary</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">summary</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summary</span><span class="o">.</span><span class="n">k</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summary</span><span class="o">.</span><span class="n">clusterSizes</span>
+<span class="go">[2, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summary</span><span class="o">.</span><span class="n">trainingCost</span>
+<span class="go">2.000...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/kmeans&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">kmeans_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans2</span> <span class="o">=</span> <span class="n">KMeans</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">kmeans_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans2</span><span class="o">.</span><span class="n">getK</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/kmeans_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">KMeansModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span><span class="o">.</span><span class="n">hasSummary</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">clusterCenters</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">clusterCenters</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">array([ True,  True], dtype=bool)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">clusterCenters</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">clusterCenters</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">array([ True,  True], dtype=bool)</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.clustering.KMeans.getDistanceMeasure">
+<code class="descname">getDistanceMeasure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L518-L523"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeans.getDistanceMeasure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <img class="math" src="_images/math/91d1f653b78d632bad83db02752aaf9971f068e3.png" alt="distanceMeasure"/></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.KMeans.getInitMode">
+<code class="descname">getInitMode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L490-L495"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeans.getInitMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <img class="math" src="_images/math/34ff2767d34597cc62f0361893044250b1014d6a.png" alt="initMode"/></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.KMeans.getInitSteps">
+<code class="descname">getInitSteps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L504-L509"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeans.getInitSteps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <img class="math" src="_images/math/29fb5b6ba23aa31db880cf37fae1e473d829bc19.png" alt="initSteps"/></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.KMeans.getK">
+<code class="descname">getK</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L476-L481"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeans.getK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <img class="math" src="_images/math/8688f09916f3356ebca98a1e7ba20da5752400c1.png" alt="k"/></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.KMeans.setDistanceMeasure">
+<code class="descname">setDistanceMeasure</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L511-L516"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeans.setDistanceMeasure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">distanceMeasure</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.KMeans.setInitMode">
+<code class="descname">setInitMode</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L483-L488"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeans.setInitMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">initMode</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.KMeans.setInitSteps">
+<code class="descname">setInitSteps</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L497-L502"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeans.setInitSteps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">initSteps</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.KMeans.setK">
+<code class="descname">setK</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L469-L474"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeans.setK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">k</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.KMeans.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>featuresCol=&quot;features&quot;</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>k=2</em>, <em>initMode=&quot;k-means||&quot;</em>, <em>initSteps=2</em>, <em>tol=1e-4</em>, <em>maxIter=20</em>, <em>seed=None</em>, <em>distanceMeasure=&quot;euclidean&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L454-L467"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeans.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for KMeans.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.clustering.KMeansModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.clustering.</code><code class="descname">KMeansModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L326-L371"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeansModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by KMeans.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.clustering.KMeansModel.clusterCenters">
+<code class="descname">clusterCenters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L333-L336"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeansModel.clusterCenters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the cluster centers, represented as a list of NumPy arrays.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.KMeansModel.computeCost">
+<code class="descname">computeCost</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L338-L350"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeansModel.computeCost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the K-means cost (sum of squared distances of points to their nearest center)
+for this model on the given data.</p>
+<dl class="docutils">
+<dt>..note:: Deprecated in 2.4.0. It will be removed in 3.0.0. Use ClusteringEvaluator instead.</dt>
+<dd>You can also get the cost on the training dataset in the summary.</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.clustering.KMeansModel.hasSummary">
+<code class="descname">hasSummary</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeansModel.hasSummary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates whether a training summary exists for this model instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.clustering.KMeansModel.summary">
+<code class="descname">summary</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.KMeansModel.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets summary (e.g. cluster assignments, cluster sizes) of the model trained on the
+training set. An exception is thrown if no summary exists.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.clustering.GaussianMixture">
+<em class="property">class </em><code class="descclassname">pyspark.ml.clustering.</code><code class="descname">GaussianMixture</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>predictionCol='prediction'</em>, <em>k=2</em>, <em>probabilityCol='probability'</em>, <em>tol=0.01</em>, <em>maxIter=100</em>, <em>seed=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L151-L270"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.GaussianMixture" title="Permalink to this definition">¶</a></dt>
+<dd><p>GaussianMixture clustering.
+This class performs expectation maximization for multivariate Gaussian
+Mixture Models (GMMs).  A GMM represents a composite distribution of
+independent Gaussian distributions with associated “mixing” weights
+specifying each’s contribution to the composite.</p>
+<p>Given a set of sample points, this class will maximize the log-likelihood
+for a mixture of k Gaussians, iterating until the log-likelihood changes by
+less than convergenceTol, or until it has reached the max number of iterations.
+While this process is generally guaranteed to converge, it is not guaranteed
+to find a global optimum.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For high-dimensional data (with many features), this algorithm may perform poorly.
+This is due to high-dimensional data (a) making it difficult to cluster at all
+(based on statistical/theoretical arguments) and (b) numerical issues with
+Gaussian distributions.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span> <span class="p">]),),</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">]),),</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]),),</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.935</span><span class="p">]),),</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="o">-</span><span class="mf">0.83</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.68</span><span class="p">]),),</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="o">-</span><span class="mf">0.91</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.76</span><span class="p">]),)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
+<span class="gp">... </span>                     <span class="n">maxIter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">hasSummary</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summary</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">summary</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summary</span><span class="o">.</span><span class="n">k</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summary</span><span class="o">.</span><span class="n">clusterSizes</span>
+<span class="go">[2, 2, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summary</span><span class="o">.</span><span class="n">logLikelihood</span>
+<span class="go">8.14636...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">weights</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">weights</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">gaussiansDF</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="go">Row(mean=DenseVector([0.825, 0.8675]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">gaussiansDF</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;cov&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="go">Row(cov=DenseMatrix(2, 2, [0.0056, -0.0051, -0.0051, 0.0046], False))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transformed</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rows</span> <span class="o">=</span> <span class="n">transformed</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rows</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">prediction</span> <span class="o">==</span> <span class="n">rows</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rows</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">prediction</span> <span class="o">==</span> <span class="n">rows</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gmm_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/gmm&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">gmm_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gm2</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">gmm_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gm2</span><span class="o">.</span><span class="n">getK</span><span class="p">()</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/gmm_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">GaussianMixtureModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span><span class="o">.</span><span class="n">hasSummary</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span><span class="o">.</span><span class="n">weights</span> <span class="o">==</span> <span class="n">model</span><span class="o">.</span><span class="n">weights</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span><span class="o">.</span><span class="n">gaussiansDF</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="go">Row(mean=DenseVector([0.825, 0.8675]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span><span class="o">.</span><span class="n">gaussiansDF</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;cov&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="go">Row(cov=DenseMatrix(2, 2, [0.0056, -0.0051, -0.0051, 0.0046], False))</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.clustering.GaussianMixture.getK">
+<code class="descname">getK</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L265-L270"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.GaussianMixture.getK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <img class="math" src="_images/math/8688f09916f3356ebca98a1e7ba20da5752400c1.png" alt="k"/></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.GaussianMixture.setK">
+<code class="descname">setK</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L258-L263"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.GaussianMixture.setK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">k</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.GaussianMixture.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>featuresCol=&quot;features&quot;</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>k=2</em>, <em>probabilityCol=&quot;probability&quot;</em>, <em>tol=0.01</em>, <em>maxIter=100</em>, <em>seed=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L245-L256"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.GaussianMixture.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for GaussianMixture.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.clustering.GaussianMixtureModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.clustering.</code><code class="descname">GaussianMixtureModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L100-L147"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.GaussianMixtureModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model fitted by GaussianMixture.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.clustering.GaussianMixtureModel.gaussiansDF">
+<code class="descname">gaussiansDF</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.GaussianMixtureModel.gaussiansDF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve Gaussian distributions as a DataFrame.
+Each row represents a Gaussian Distribution.
+The DataFrame has two columns: mean (Vector) and cov (Matrix).</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.clustering.GaussianMixtureModel.hasSummary">
+<code class="descname">hasSummary</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.GaussianMixtureModel.hasSummary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates whether a training summary exists for this model
+instance.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.clustering.GaussianMixtureModel.summary">
+<code class="descname">summary</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.GaussianMixtureModel.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets summary (e.g. cluster assignments, cluster sizes) of the model trained on the
+training set. An exception is thrown if no summary exists.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.clustering.GaussianMixtureModel.weights">
+<code class="descname">weights</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.GaussianMixtureModel.weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Weight for each Gaussian distribution in the mixture.
+This is a multinomial probability distribution over the k Gaussians,
+where weights[i] is the weight for Gaussian i, and weights sum to 1.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.clustering.GaussianMixtureSummary">
+<em class="property">class </em><code class="descclassname">pyspark.ml.clustering.</code><code class="descname">GaussianMixtureSummary</code><span class="sig-paren">(</span><em>java_obj=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L273-L304"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.GaussianMixtureSummary" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Gaussian mixture clustering results for a given model.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+<dl class="attribute">
+<dt id="pyspark.ml.clustering.GaussianMixtureSummary.logLikelihood">
+<code class="descname">logLikelihood</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.GaussianMixtureSummary.logLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total log-likelihood for this model on the given data.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.clustering.GaussianMixtureSummary.probability">
+<code class="descname">probability</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.GaussianMixtureSummary.probability" title="Permalink to this definition">¶</a></dt>
+<dd><p>DataFrame of probabilities of each cluster for each training data point.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyspark.ml.clustering.GaussianMixtureSummary.probabilityCol">
+<code class="descname">probabilityCol</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.GaussianMixtureSummary.probabilityCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name for column of predicted probability of each cluster in <img class="math" src="_images/math/c3d741dd337453341d1a4b506cd11ba78c15fa56.png" alt="predictions"/>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.1.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.clustering.LDA">
+<em class="property">class </em><code class="descclassname">pyspark.ml.clustering.</code><code class="descname">LDA</code><span class="sig-paren">(</span><em>featuresCol='features'</em>, <em>maxIter=20</em>, <em>seed=None</em>, <em>checkpointInterval=10</em>, <em>k=10</em>, <em>optimizer='online'</em>, <em>learningOffset=1024.0</em>, <em>learningDecay=0.51</em>, <em>subsamplingRate=0.05</em>, <em>optimizeDocConcentration=True</em>, <em>docConcentration=None</em>, <em>topicConcentration=None</em>, <em>topicDistributionCol='topicDistribution'</em>, <em>keepLastCheckpoint=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L871-L1195"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Latent Dirichlet Allocation (LDA), a topic model designed for text documents.</p>
+<p>Terminology:</p>
+<blockquote>
+<div><ul class="simple">
+<li>“term” = “word”: an element of the vocabulary</li>
+<li>“token”: instance of a term appearing in a document</li>
+<li>“topic”: multinomial distribution over terms representing some concept</li>
+<li>“document”: one piece of text, corresponding to one row in the input data</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>Original LDA paper (journal version):</dt>
+<dd>Blei, Ng, and Jordan.  “Latent Dirichlet Allocation.”  JMLR, 2003.</dd>
+</dl>
+<p>Input data (featuresCol):
+LDA is given a collection of documents as input data, via the featuresCol parameter.
+Each document is specified as a <code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code> of length vocabSize, where each entry is the
+count for the corresponding term (word) in the document.  Feature transformers such as
+<code class="xref py py-class docutils literal notranslate"><span class="pre">pyspark.ml.feature.Tokenizer</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">pyspark.ml.feature.CountVectorizer</span></code>
+can be useful for converting text to word count vectors.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span><span class="p">,</span> <span class="n">SparseVector</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.clustering</span> <span class="k">import</span> <span class="n">LDA</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])],</span>
+<span class="gp">... </span>     <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">SparseVector</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">})],],</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lda</span> <span class="o">=</span> <span class="n">LDA</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;em&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">lda</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">isDistributed</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">localModel</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">toLocal</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">localModel</span><span class="o">.</span><span class="n">isDistributed</span><span class="p">()</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">vocabSize</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">describeTopics</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="go">+-----+-----------+--------------------+</span>
+<span class="go">|topic|termIndices|         termWeights|</span>
+<span class="go">+-----+-----------+--------------------+</span>
+<span class="go">|    0|     [1, 0]|[0.50401530077160...|</span>
+<span class="go">|    1|     [0, 1]|[0.50401530077160...|</span>
+<span class="go">+-----+-----------+--------------------+</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">topicsMatrix</span><span class="p">()</span>
+<span class="go">DenseMatrix(2, 2, [0.496, 0.504, 0.504, 0.496], 0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lda_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/lda&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lda</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">lda_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sameLDA</span> <span class="o">=</span> <span class="n">LDA</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">lda_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distributed_model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/lda_distributed_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">distributed_model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sameModel</span> <span class="o">=</span> <span class="n">DistributedLDAModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">distributed_model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/lda_local_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">localModel</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">local_model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sameLocalModel</span> <span class="o">=</span> <span class="n">LocalLDAModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">local_model_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.getDocConcentration">
+<code class="descname">getDocConcentration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1136-L1141"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.getDocConcentration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">docConcentration</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.getK">
+<code class="descname">getK</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1027-L1032"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.getK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">k</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.getKeepLastCheckpoint">
+<code class="descname">getKeepLastCheckpoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1190-L1195"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.getKeepLastCheckpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">keepLastCheckpoint</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.getLearningDecay">
+<code class="descname">getLearningDecay</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1082-L1087"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.getLearningDecay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">learningDecay</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.getLearningOffset">
+<code class="descname">getLearningOffset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1064-L1069"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.getLearningOffset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">learningOffset</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.getOptimizeDocConcentration">
+<code class="descname">getOptimizeDocConcentration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1118-L1123"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.getOptimizeDocConcentration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">optimizeDocConcentration</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.getOptimizer">
+<code class="descname">getOptimizer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1046-L1051"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.getOptimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">optimizer</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.getSubsamplingRate">
+<code class="descname">getSubsamplingRate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1100-L1105"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.getSubsamplingRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">subsamplingRate</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.getTopicConcentration">
+<code class="descname">getTopicConcentration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1154-L1159"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.getTopicConcentration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">topicConcentration</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.getTopicDistributionCol">
+<code class="descname">getTopicDistributionCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1172-L1177"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.getTopicDistributionCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">topicDistributionCol</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.setDocConcentration">
+<code class="descname">setDocConcentration</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1125-L1134"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.setDocConcentration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">docConcentration</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span> <span class="o">=</span> <span class="n">LDA</span><span class="p">()</span><span class="o">.</span><span class="n">setDocConcentration</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span><span class="o">.</span><span class="n">getDocConcentration</span><span class="p">()</span>
+<span class="go">[0.1..., 0.2...]</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.setK">
+<code class="descname">setK</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1016-L1025"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.setK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">k</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span> <span class="o">=</span> <span class="n">LDA</span><span class="p">()</span><span class="o">.</span><span class="n">setK</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span><span class="o">.</span><span class="n">getK</span><span class="p">()</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.setKeepLastCheckpoint">
+<code class="descname">setKeepLastCheckpoint</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1179-L1188"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.setKeepLastCheckpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">keepLastCheckpoint</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span> <span class="o">=</span> <span class="n">LDA</span><span class="p">()</span><span class="o">.</span><span class="n">setKeepLastCheckpoint</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span><span class="o">.</span><span class="n">getKeepLastCheckpoint</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.setLearningDecay">
+<code class="descname">setLearningDecay</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1071-L1080"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.setLearningDecay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">learningDecay</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span> <span class="o">=</span> <span class="n">LDA</span><span class="p">()</span><span class="o">.</span><span class="n">setLearningDecay</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span><span class="o">.</span><span class="n">getLearningDecay</span><span class="p">()</span>
+<span class="go">0.1...</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.setLearningOffset">
+<code class="descname">setLearningOffset</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1053-L1062"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.setLearningOffset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">learningOffset</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span> <span class="o">=</span> <span class="n">LDA</span><span class="p">()</span><span class="o">.</span><span class="n">setLearningOffset</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span><span class="o">.</span><span class="n">getLearningOffset</span><span class="p">()</span>
+<span class="go">100.0</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.setOptimizeDocConcentration">
+<code class="descname">setOptimizeDocConcentration</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1107-L1116"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.setOptimizeDocConcentration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">optimizeDocConcentration</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span> <span class="o">=</span> <span class="n">LDA</span><span class="p">()</span><span class="o">.</span><span class="n">setOptimizeDocConcentration</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span><span class="o">.</span><span class="n">getOptimizeDocConcentration</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.setOptimizer">
+<code class="descname">setOptimizer</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1034-L1044"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.setOptimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">optimizer</span></code>.
+Currently only support ‘em’ and ‘online’.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span> <span class="o">=</span> <span class="n">LDA</span><span class="p">()</span><span class="o">.</span><span class="n">setOptimizer</span><span class="p">(</span><span class="s2">&quot;em&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span><span class="o">.</span><span class="n">getOptimizer</span><span class="p">()</span>
+<span class="go">&#39;em&#39;</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>featuresCol=&quot;features&quot;</em>, <em>maxIter=20</em>, <em>seed=None</em>, <em>checkpointInterval=10</em>, <em>k=10</em>, <em>optimizer=&quot;online&quot;</em>, <em>learningOffset=1024.0</em>, <em>learningDecay=0.51</em>, <em>subsamplingRate=0.05</em>, <em>optimizeDocConcentration=True</em>, <em>docConcentration=None</em>, <em>topicConcentration=None</em>, <em>topicDistributionCol=&quot;topicDistribution&quot;</em>, <em>keepLastCheckpoint=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L997-L1014"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for LDA.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.setSubsamplingRate">
+<code class="descname">setSubsamplingRate</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1089-L1098"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.setSubsamplingRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">subsamplingRate</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span> <span class="o">=</span> <span class="n">LDA</span><span class="p">()</span><span class="o">.</span><span class="n">setSubsamplingRate</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span><span class="o">.</span><span class="n">getSubsamplingRate</span><span class="p">()</span>
+<span class="go">0.1...</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.setTopicConcentration">
+<code class="descname">setTopicConcentration</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1143-L1152"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.setTopicConcentration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">topicConcentration</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span> <span class="o">=</span> <span class="n">LDA</span><span class="p">()</span><span class="o">.</span><span class="n">setTopicConcentration</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span><span class="o">.</span><span class="n">getTopicConcentration</span><span class="p">()</span>
+<span class="go">0.5...</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDA.setTopicDistributionCol">
+<code class="descname">setTopicDistributionCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1161-L1170"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDA.setTopicDistributionCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">topicDistributionCol</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span> <span class="o">=</span> <span class="n">LDA</span><span class="p">()</span><span class="o">.</span><span class="n">setTopicDistributionCol</span><span class="p">(</span><span class="s2">&quot;topicDistributionCol&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">algo</span><span class="o">.</span><span class="n">getTopicDistributionCol</span><span class="p">()</span>
+<span class="go">&#39;topicDistributionCol&#39;</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.clustering.LDAModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.clustering.</code><code class="descname">LDAModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L716-L788"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDAModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Latent Dirichlet Allocation (LDA) model.
+This abstraction permits for different underlying representations,
+including local and distributed data structures.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDAModel.describeTopics">
+<code class="descname">describeTopics</code><span class="sig-paren">(</span><em>maxTermsPerTopic=10</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L774-L779"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDAModel.describeTopics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the topics described by their top-weighted terms.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDAModel.estimatedDocConcentration">
+<code class="descname">estimatedDocConcentration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L781-L788"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDAModel.estimatedDocConcentration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value for <code class="xref py py-attr docutils literal notranslate"><span class="pre">LDA.docConcentration</span></code> estimated from data.
+If Online LDA was used and <code class="xref py py-attr docutils literal notranslate"><span class="pre">LDA.optimizeDocConcentration</span></code> was set to false,
+then this returns the fixed (given) value for the <code class="xref py py-attr docutils literal notranslate"><span class="pre">LDA.docConcentration</span></code> parameter.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDAModel.isDistributed">
+<code class="descname">isDistributed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L725-L730"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDAModel.isDistributed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates whether this instance is of type DistributedLDAModel</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDAModel.logLikelihood">
+<code class="descname">logLikelihood</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L750-L760"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDAModel.logLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates a lower bound on the log likelihood of the entire corpus.
+See Equation (16) in the Online LDA paper (Hoffman et al., 2010).</p>
+<p>WARNING: If this model is an instance of <a class="reference internal" href="#pyspark.ml.clustering.DistributedLDAModel" title="pyspark.ml.clustering.DistributedLDAModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">DistributedLDAModel</span></code></a> (produced when
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">optimizer</span></code> is set to “em”), this involves collecting a large
+<a class="reference internal" href="#pyspark.ml.clustering.LDAModel.topicsMatrix" title="pyspark.ml.clustering.LDAModel.topicsMatrix"><code class="xref py py-func docutils literal notranslate"><span class="pre">topicsMatrix()</span></code></a> to the driver. This implementation may be changed in the future.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDAModel.logPerplexity">
+<code class="descname">logPerplexity</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L762-L772"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDAModel.logPerplexity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate an upper bound on perplexity.  (Lower is better.)
+See Equation (16) in the Online LDA paper (Hoffman et al., 2010).</p>
+<p>WARNING: If this model is an instance of <a class="reference internal" href="#pyspark.ml.clustering.DistributedLDAModel" title="pyspark.ml.clustering.DistributedLDAModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">DistributedLDAModel</span></code></a> (produced when
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">optimizer</span></code> is set to “em”), this involves collecting a large
+<a class="reference internal" href="#pyspark.ml.clustering.LDAModel.topicsMatrix" title="pyspark.ml.clustering.LDAModel.topicsMatrix"><code class="xref py py-func docutils literal notranslate"><span class="pre">topicsMatrix()</span></code></a> to the driver. This implementation may be changed in the future.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDAModel.topicsMatrix">
+<code class="descname">topicsMatrix</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L737-L748"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDAModel.topicsMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inferred topics, where each topic is represented by a distribution over terms.
+This is a matrix of size vocabSize x k, where each column is a topic.
+No guarantees are given about the ordering of the topics.</p>
+<p>WARNING: If this model is actually a <a class="reference internal" href="#pyspark.ml.clustering.DistributedLDAModel" title="pyspark.ml.clustering.DistributedLDAModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">DistributedLDAModel</span></code></a> instance produced by
+the Expectation-Maximization (“em”) <img class="math" src="_images/math/418d4bcc8b3dc395f8e3075d50470562c18e0360.png" alt="optimizer"/>, then this method could involve
+collecting a large amount of data to the driver (on the order of vocabSize x k).</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.LDAModel.vocabSize">
+<code class="descname">vocabSize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L732-L735"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LDAModel.vocabSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vocabulary size (number of terms or words in the vocabulary)</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.clustering.LocalLDAModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.clustering.</code><code class="descname">LocalLDAModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L860-L867"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.LocalLDAModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Local (non-distributed) model fitted by <a class="reference internal" href="#pyspark.ml.clustering.LDA" title="pyspark.ml.clustering.LDA"><code class="xref py py-class docutils literal notranslate"><span class="pre">LDA</span></code></a>.
+This model stores the inferred topics only; it does not store info about the training dataset.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.clustering.DistributedLDAModel">
+<em class="property">class </em><code class="descclassname">pyspark.ml.clustering.</code><code class="descname">DistributedLDAModel</code><span class="sig-paren">(</span><em>java_model=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L792-L856"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.DistributedLDAModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distributed model fitted by <a class="reference internal" href="#pyspark.ml.clustering.LDA" title="pyspark.ml.clustering.LDA"><code class="xref py py-class docutils literal notranslate"><span class="pre">LDA</span></code></a>.
+This type of model is currently only produced by Expectation-Maximization (EM).</p>
+<p>This model stores the inferred topics, the full training dataset, and the topic distribution
+for each training document.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.clustering.DistributedLDAModel.getCheckpointFiles">
+<code class="descname">getCheckpointFiles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L844-L856"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.DistributedLDAModel.getCheckpointFiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>If using checkpointing and <code class="xref py py-attr docutils literal notranslate"><span class="pre">LDA.keepLastCheckpoint</span></code> is set to true, then there may
+be saved checkpoint files.  This method is provided so that users can manage those files.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Removing the checkpoints can cause failures if a partition is lost and is needed
+by certain <a class="reference internal" href="#pyspark.ml.clustering.DistributedLDAModel" title="pyspark.ml.clustering.DistributedLDAModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">DistributedLDAModel</span></code></a> methods.  Reference counting will clean up
+the checkpoints when this model and derivative data go out of scope.</p>
+</div>
+<p>:return  List of checkpoint files from training</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.DistributedLDAModel.logPrior">
+<code class="descname">logPrior</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L836-L842"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.DistributedLDAModel.logPrior" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log probability of the current parameter estimate:
+log P(topics, topic distributions for docs | alpha, eta)</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.DistributedLDAModel.toLocal">
+<code class="descname">toLocal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L803-L817"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.DistributedLDAModel.toLocal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert this distributed model to a local representation.  This discards info about the
+training dataset.</p>
+<p>WARNING: This involves collecting a large <code class="xref py py-func docutils literal notranslate"><span class="pre">topicsMatrix()</span></code> to the driver.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.DistributedLDAModel.trainingLogLikelihood">
+<code class="descname">trainingLogLikelihood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L819-L834"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.DistributedLDAModel.trainingLogLikelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log likelihood of the observed tokens in the training set,
+given the current parameter estimates:
+log P(docs | topics, topic distributions for docs, Dirichlet hyperparameters)</p>
+<dl class="docutils">
+<dt>Notes:</dt>
+<dd><ul class="first last simple">
+<li>This excludes the prior; for that, use <a class="reference internal" href="#pyspark.ml.clustering.DistributedLDAModel.logPrior" title="pyspark.ml.clustering.DistributedLDAModel.logPrior"><code class="xref py py-func docutils literal notranslate"><span class="pre">logPrior()</span></code></a>.</li>
+<li>Even with <a class="reference internal" href="#pyspark.ml.clustering.DistributedLDAModel.logPrior" title="pyspark.ml.clustering.DistributedLDAModel.logPrior"><code class="xref py py-func docutils literal notranslate"><span class="pre">logPrior()</span></code></a>, this is NOT the same as the data log likelihood given
+the hyperparameters.</li>
+<li>This is computed from the topic distributions computed during training. If you call
+<code class="xref py py-func docutils literal notranslate"><span class="pre">logLikelihood()</span></code> on the same training dataset, the topic distributions
+will be computed again, possibly giving different results.</li>
+</ul>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.0.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.clustering.PowerIterationClustering">
+<em class="property">class </em><code class="descclassname">pyspark.ml.clustering.</code><code class="descname">PowerIterationClustering</code><span class="sig-paren">(</span><em>k=2</em>, <em>maxIter=20</em>, <em>initMode='random'</em>, <em>srcCol='src'</em>, <em>dstCol='dst'</em>, <em>weightCol=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1199-L1368"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.PowerIterationClustering" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Power Iteration Clustering (PIC), a scalable graph clustering algorithm developed by
+<a class="reference external" href="http://www.icml2010.org/papers/387.pdf">Lin and Cohen</a>. From the abstract:
+PIC finds a very low-dimensional embedding of a dataset using truncated power
+iteration on a normalized pair-wise similarity matrix of the data.</p>
+<p>This class is not yet an Estimator/Transformer, use <a class="reference internal" href="#pyspark.ml.clustering.PowerIterationClustering.assignClusters" title="pyspark.ml.clustering.PowerIterationClustering.assignClusters"><code class="xref py py-func docutils literal notranslate"><span class="pre">assignClusters()</span></code></a> method
+to run the PowerIterationClustering algorithm.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="http://en.wikipedia.org/wiki/Spectral_clustering">Wikipedia on Spectral clustering</a></p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">toDF</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">,</span> <span class="s2">&quot;dst&quot;</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pic</span> <span class="o">=</span> <span class="n">PowerIterationClustering</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">maxIter</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">weightCol</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">assignments</span> <span class="o">=</span> <span class="n">pic</span><span class="o">.</span><span class="n">assignClusters</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">assignments</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">assignments</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">+---+-------+</span>
+<span class="go">|id |cluster|</span>
+<span class="go">+---+-------+</span>
+<span class="go">|0  |1      |</span>
+<span class="go">|1  |1      |</span>
+<span class="go">|2  |1      |</span>
+<span class="go">|3  |1      |</span>
+<span class="go">|4  |1      |</span>
+<span class="go">|5  |0      |</span>
+<span class="go">+---+-------+</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pic_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/pic&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pic</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">pic_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pic2</span> <span class="o">=</span> <span class="n">PowerIterationClustering</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pic_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pic2</span><span class="o">.</span><span class="n">getK</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pic2</span><span class="o">.</span><span class="n">getMaxIter</span><span class="p">()</span>
+<span class="go">40</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.clustering.PowerIterationClustering.assignClusters">
+<code class="descname">assignClusters</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1344-L1368"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.PowerIterationClustering.assignClusters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the PIC algorithm and returns a cluster assignment for each input vertex.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dataset</strong> – A dataset with columns src, dst, weight representing the affinity matrix,
+which is the matrix A in the PIC paper. Suppose the src column value is i,
+the dst column value is j, the weight column value is similarity s,,ij,,
+which must be nonnegative. This is a symmetric matrix and hence
+s,,ij,, = s,,ji,,. For any (i, j) with nonzero similarity, there should be
+either (i, j, s,,ij,,) or (j, i, s,,ji,,) in the input. Rows with i = j are
+ignored, because we assume s,,ij,, = 0.0.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dataset that contains columns of vertex id and the corresponding cluster for
+the id. The schema of it will be:
+- id: Long
+- cluster: Int</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.PowerIterationClustering.getDstCol">
+<code class="descname">getDstCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1337-L1342"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.PowerIterationClustering.getDstCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">dstCol</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.PowerIterationClustering.getInitMode">
+<code class="descname">getInitMode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1309-L1314"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.PowerIterationClustering.getInitMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">initMode</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.PowerIterationClustering.getK">
+<code class="descname">getK</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1295-L1300"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.PowerIterationClustering.getK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">k</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.PowerIterationClustering.getSrcCol">
+<code class="descname">getSrcCol</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1323-L1328"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.PowerIterationClustering.getSrcCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">srcCol</span></code> or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.PowerIterationClustering.setDstCol">
+<code class="descname">setDstCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1330-L1335"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.PowerIterationClustering.setDstCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">dstCol</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.PowerIterationClustering.setInitMode">
+<code class="descname">setInitMode</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1302-L1307"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.PowerIterationClustering.setInitMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">initMode</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.PowerIterationClustering.setK">
+<code class="descname">setK</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1288-L1293"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.PowerIterationClustering.setK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">k</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.PowerIterationClustering.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>k=2</em>, <em>maxIter=20</em>, <em>initMode=&quot;random&quot;</em>, <em>srcCol=&quot;src&quot;</em>, <em>dstCol=&quot;dst&quot;</em>, <em>weightCol=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L1276-L1286"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.PowerIterationClustering.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for PowerIterationClustering.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.clustering.PowerIterationClustering.setSrcCol">
+<code class="descname">setSrcCol</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/clustering.py#L1316-L1321"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.clustering.PowerIterationClustering.setSrcCol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">srcCol</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="recommendationAPI.html" class="btn btn-neutral float-right" title="6. Recommendation API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="classificationAPI.html" class="btn btn-neutral float-left" title="4. Classification API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Wenqiang Feng
+      <span class="lastupdated">
+        Last updated on Mar 19, 2019.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

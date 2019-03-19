@@ -1,0 +1,523 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9. Evaluation API &mdash; PySpark API 1.00 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/icon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fix_rtd.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="10. Main Reference" href="reference.html" />
+    <link rel="prev" title="8. Tuning API" href="tuningAPI.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PySpark API
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statAPI.html">2. Stat API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regressionAPI.html">3. Regression API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classificationAPI.html">4. Classification API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clusteringAPI.html">5. Clustering API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recommendationAPI.html">6. Recommendation API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipelineAPI.html">7. Pipeline API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuningAPI.html">8. Tuning API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. Evaluation API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">10. Main Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PySpark API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>9. Evaluation API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/runawayhorse001/statspy/blob/master/doc/evaluationAPI.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyspark.ml.evaluation">
+<span id="evaluation-api"></span><span id="evaluationapi"></span><h1>9. Evaluation API<a class="headerlink" href="#module-pyspark.ml.evaluation" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pyspark.ml.evaluation.Evaluator">
+<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">Evaluator</code><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L34-L82"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.Evaluator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for evaluators that compute metrics from predictions.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.evaluation.Evaluator.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>dataset</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L54-L73"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.Evaluator.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the output with optional parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dataset</strong> – a dataset that contains labels/observations and
+predictions</li>
+<li><strong>params</strong> – an optional param map that overrides embedded
+params</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">metric</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.evaluation.Evaluator.isLargerBetter">
+<code class="descname">isLargerBetter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L75-L82"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.Evaluator.isLargerBetter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates whether the metric returned by <a class="reference internal" href="#pyspark.ml.evaluation.Evaluator.evaluate" title="pyspark.ml.evaluation.Evaluator.evaluate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code></a> should be maximized
+(True, default) or minimized (False).
+A given evaluator may support multiple metrics which may be maximized or minimized.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.evaluation.BinaryClassificationEvaluator">
+<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">BinaryClassificationEvaluator</code><span class="sig-paren">(</span><em>rawPredictionCol='rawPrediction'</em>, <em>labelCol='label'</em>, <em>metricName='areaUnderROC'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L109-L179"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.BinaryClassificationEvaluator" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Evaluator for binary classification, which expects two input columns: rawPrediction and label.
+The rawPrediction column can be of type double (binary 0/1 prediction, or probability of label
+1) or of type vector (length-2 vector of raw predictions, scores, or label probabilities).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scoreAndLabels</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">([</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]),</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+<span class="gp">... </span>   <span class="p">[(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">scoreAndLabels</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;raw&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">])</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span> <span class="o">=</span> <span class="n">BinaryClassificationEvaluator</span><span class="p">(</span><span class="n">rawPredictionCol</span><span class="o">=</span><span class="s2">&quot;raw&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="go">0.70...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="p">{</span><span class="n">evaluator</span><span class="o">.</span><span class="n">metricName</span><span class="p">:</span> <span class="s2">&quot;areaUnderPR&quot;</span><span class="p">})</span>
+<span class="go">0.83...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bce_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/bce&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">bce_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator2</span> <span class="o">=</span> <span class="n">BinaryClassificationEvaluator</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">bce_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">evaluator2</span><span class="o">.</span><span class="n">getRawPredictionCol</span><span class="p">())</span>
+<span class="go">&#39;raw&#39;</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.evaluation.BinaryClassificationEvaluator.getMetricName">
+<code class="descname">getMetricName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L162-L167"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.BinaryClassificationEvaluator.getMetricName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of metricName or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.evaluation.BinaryClassificationEvaluator.setMetricName">
+<code class="descname">setMetricName</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L155-L160"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.BinaryClassificationEvaluator.setMetricName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">metricName</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.evaluation.BinaryClassificationEvaluator.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>rawPredictionCol=&quot;rawPrediction&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>metricName=&quot;areaUnderROC&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L169-L179"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.BinaryClassificationEvaluator.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for binary classification evaluator.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.evaluation.RegressionEvaluator">
+<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">RegressionEvaluator</code><span class="sig-paren">(</span><em>predictionCol='prediction'</em>, <em>labelCol='label'</em>, <em>metricName='rmse'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L183-L256"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.RegressionEvaluator" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Evaluator for Regression, which expects two input
+columns: prediction and label.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scoreAndLabels</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mf">28.98343821</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">20.21491975</span><span class="p">,</span> <span class="mf">21.5</span><span class="p">),</span>
+<span class="gp">... </span>  <span class="p">(</span><span class="o">-</span><span class="mf">25.98418959</span><span class="p">,</span> <span class="o">-</span><span class="mf">22.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">30.69731842</span><span class="p">,</span> <span class="mf">33.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">74.69283752</span><span class="p">,</span> <span class="mf">71.0</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">scoreAndLabels</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;raw&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">])</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span> <span class="o">=</span> <span class="n">RegressionEvaluator</span><span class="p">(</span><span class="n">predictionCol</span><span class="o">=</span><span class="s2">&quot;raw&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="go">2.842...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="p">{</span><span class="n">evaluator</span><span class="o">.</span><span class="n">metricName</span><span class="p">:</span> <span class="s2">&quot;r2&quot;</span><span class="p">})</span>
+<span class="go">0.993...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="p">{</span><span class="n">evaluator</span><span class="o">.</span><span class="n">metricName</span><span class="p">:</span> <span class="s2">&quot;mae&quot;</span><span class="p">})</span>
+<span class="go">2.649...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">re_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/re&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">re_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator2</span> <span class="o">=</span> <span class="n">RegressionEvaluator</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">re_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">evaluator2</span><span class="o">.</span><span class="n">getPredictionCol</span><span class="p">())</span>
+<span class="go">&#39;raw&#39;</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.evaluation.RegressionEvaluator.getMetricName">
+<code class="descname">getMetricName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L239-L244"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.RegressionEvaluator.getMetricName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of metricName or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.evaluation.RegressionEvaluator.setMetricName">
+<code class="descname">setMetricName</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L232-L237"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.RegressionEvaluator.setMetricName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">metricName</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.evaluation.RegressionEvaluator.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>metricName=&quot;rmse&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L246-L256"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.RegressionEvaluator.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for regression evaluator.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.evaluation.MulticlassClassificationEvaluator">
+<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">MulticlassClassificationEvaluator</code><span class="sig-paren">(</span><em>predictionCol='prediction'</em>, <em>labelCol='label'</em>, <em>metricName='f1'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L260-L328"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.MulticlassClassificationEvaluator" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Evaluator for Multiclass Classification, which expects two input
+columns: prediction and label.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scoreAndLabels</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">scoreAndLabels</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">])</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span> <span class="o">=</span> <span class="n">MulticlassClassificationEvaluator</span><span class="p">(</span><span class="n">predictionCol</span><span class="o">=</span><span class="s2">&quot;prediction&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="go">0.66...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="p">{</span><span class="n">evaluator</span><span class="o">.</span><span class="n">metricName</span><span class="p">:</span> <span class="s2">&quot;accuracy&quot;</span><span class="p">})</span>
+<span class="go">0.66...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mce_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/mce&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mce_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator2</span> <span class="o">=</span> <span class="n">MulticlassClassificationEvaluator</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">mce_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">evaluator2</span><span class="o">.</span><span class="n">getPredictionCol</span><span class="p">())</span>
+<span class="go">&#39;prediction&#39;</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.evaluation.MulticlassClassificationEvaluator.getMetricName">
+<code class="descname">getMetricName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L311-L316"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.MulticlassClassificationEvaluator.getMetricName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of metricName or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.evaluation.MulticlassClassificationEvaluator.setMetricName">
+<code class="descname">setMetricName</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L304-L309"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.MulticlassClassificationEvaluator.setMetricName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">metricName</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.evaluation.MulticlassClassificationEvaluator.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>labelCol=&quot;label&quot;</em>, <em>metricName=&quot;f1&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L318-L328"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.MulticlassClassificationEvaluator.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for multiclass classification evaluator.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.5.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyspark.ml.evaluation.ClusteringEvaluator">
+<em class="property">class </em><code class="descclassname">pyspark.ml.evaluation.</code><code class="descname">ClusteringEvaluator</code><span class="sig-paren">(</span><em>predictionCol='prediction'</em>, <em>featuresCol='features'</em>, <em>metricName='silhouette'</em>, <em>distanceMeasure='squaredEuclidean'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L332-L422"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Experimental</p>
+</div>
+<p>Evaluator for Clustering results, which expects two input
+columns: prediction and features. The metric computes the Silhouette
+measure using the squared Euclidean distance.</p>
+<p>The Silhouette is a measure for the validation of the consistency
+within clusters. It ranges between 1 and -1, where a value close to
+1 means that the points in a cluster are close to the other points
+in the same cluster and far from the points of the other clusters.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">featureAndPredictions</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+<span class="gp">... </span>    <span class="p">[([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">([</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">([</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">11.5</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">),</span> <span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">([</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">featureAndPredictions</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">])</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span> <span class="o">=</span> <span class="n">ClusteringEvaluator</span><span class="p">(</span><span class="n">predictionCol</span><span class="o">=</span><span class="s2">&quot;prediction&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="go">0.9079...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ce_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/ce&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">ce_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">evaluator2</span> <span class="o">=</span> <span class="n">ClusteringEvaluator</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">ce_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">evaluator2</span><span class="o">.</span><span class="n">getPredictionCol</span><span class="p">())</span>
+<span class="go">&#39;prediction&#39;</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+<dl class="method">
+<dt id="pyspark.ml.evaluation.ClusteringEvaluator.getDistanceMeasure">
+<code class="descname">getDistanceMeasure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L417-L422"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.getDistanceMeasure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <img class="math" src="_images/math/91d1f653b78d632bad83db02752aaf9971f068e3.png" alt="distanceMeasure"/></p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.evaluation.ClusteringEvaluator.getMetricName">
+<code class="descname">getMetricName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L391-L396"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.getMetricName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of metricName or its default value.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.evaluation.ClusteringEvaluator.setDistanceMeasure">
+<code class="descname">setDistanceMeasure</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L410-L415"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.setDistanceMeasure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">distanceMeasure</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.evaluation.ClusteringEvaluator.setMetricName">
+<code class="descname">setMetricName</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/ml/evaluation.py#L384-L389"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.setMetricName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">metricName</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyspark.ml.evaluation.ClusteringEvaluator.setParams">
+<code class="descname">setParams</code><span class="sig-paren">(</span><em>self</em>, <em>predictionCol=&quot;prediction&quot;</em>, <em>featuresCol=&quot;features&quot;</em>, <em>metricName=&quot;silhouette&quot;</em>, <em>distanceMeasure=&quot;squaredEuclidean&quot;</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/runawayhorse001/statspy/blob/master/pyspark/__init__.py#L398-L408"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspark.ml.evaluation.ClusteringEvaluator.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets params for clustering evaluator.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.3.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="reference.html" class="btn btn-neutral float-right" title="10. Main Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tuningAPI.html" class="btn btn-neutral float-left" title="8. Tuning API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Wenqiang Feng
+      <span class="lastupdated">
+        Last updated on Mar 19, 2019.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
